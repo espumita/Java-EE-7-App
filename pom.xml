@@ -2,6 +2,28 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>root</groupId>
    <version>1.0</version>
+   <dependencies>
+      <!-- Testing -->
+      <!-- https://mvnrepository.com/artifact/junit/junit -->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.12</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+      <dependency>
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-all</artifactId>
+         <version>1.9.5</version>
+      </dependency>
+
+      <dependency>
+         <groupId>javax</groupId>
+         <artifactId>javaee-api</artifactId>
+         <version>7.0</version>
+      </dependency>
+   </dependencies>
    <artifactId>project</artifactId>
    <packaging>pom</packaging>
    <name>project</name>
