@@ -18,11 +18,21 @@ public class SessionShould {
     @Test
     public void login_an_user_adding_some_credentials_to_session() {
         HttpSession httpSession = mock(HttpSession.class);
-        Session session = new Session(httpSession);
+        SessionProvider sessionProvider = new SessionProvider(httpSession);
         User user = new User("someUserName");
 
-        session.login(user);
+        sessionProvider.login(user);
 
         verify(httpSession).setAttribute(any(String.class), eq(user.name()));
+    }
+
+    @Test
+    public void logout_an_user() throws Exception {
+        HttpSession httpSession = mock(HttpSession.class);
+        SessionProvider sessionProvider = new SessionProvider(httpSession);
+
+        sessionProvider.logout();
+
+        verify(httpSession).invalidate();
     }
 }

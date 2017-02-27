@@ -2,16 +2,20 @@ package utils;
 
 import javax.servlet.http.HttpSession;
 
-public class Session {
+public class SessionProvider {
 
     private final HttpSession httpSession;
 
-    public Session(HttpSession httpSession) {
+    public SessionProvider(HttpSession httpSession) {
 
         this.httpSession = httpSession;
     }
 
     public void login(User user) {
         httpSession.setAttribute("name", user.name());
+    }
+
+    public void logout() {
+        httpSession.invalidate();
     }
 }
