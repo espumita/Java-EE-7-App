@@ -16,6 +16,11 @@
          <artifactId>primary-source</artifactId>
          <scope>provided</scope>
       </dependency>
+       <dependency>
+           <groupId>root</groupId>
+           <artifactId>project</artifactId>
+           <version>1.0</version>
+       </dependency>
 
    </dependencies>
 </project>
