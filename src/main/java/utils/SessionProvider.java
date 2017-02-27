@@ -18,4 +18,8 @@ public class SessionProvider {
     public void logout() {
         httpSession.invalidate();
     }
+
+    public boolean isUserLogged() {
+        return httpSession.getAttribute("name") != null;
+    }
 }

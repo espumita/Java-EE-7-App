@@ -8,6 +8,8 @@ import java.io.IOException;
 public class ServletExample extends javax.servlet.http.HttpServlet {
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("example.jsp");
         requestDispatcher.forward(request, response);
     }
