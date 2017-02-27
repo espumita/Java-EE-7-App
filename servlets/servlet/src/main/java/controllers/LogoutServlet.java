@@ -11,12 +11,12 @@ import java.io.IOException;
 
 @WebServlet(name = "Logout", urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SessionProvider sessionProvider = new SessionProvider(request.getSession());
         sessionProvider.logout();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

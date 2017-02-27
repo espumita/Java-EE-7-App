@@ -47,7 +47,7 @@ public class SessionProviderShould {
 
     @Test
     public void tell_us_if_user_is_not_logged() throws Exception {
-        when(httpSession.getAttribute(any(String.class))).thenReturn(null);
+        when(httpSession.getAttribute(any(String.class))).thenReturn("");
 
         boolean userLogged = sessionProvider.isUserLogged();
 

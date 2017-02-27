@@ -20,6 +20,6 @@ public class SessionProvider {
     }
 
     public boolean isUserLogged() {
-        return httpSession != null && httpSession.getAttribute("name") != null;
+        return  httpSession != null && httpSession.getAttribute("name") != null && httpSession.getAttribute("name") != "";
     }
 }
