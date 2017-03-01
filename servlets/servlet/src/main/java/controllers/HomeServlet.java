@@ -17,8 +17,7 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         SessionProvider sessionProvider = new SessionProvider(request.getSession());
-        boolean userLogged = sessionProvider.isUserLogged();
-        if(userLogged){
+        if(sessionProvider.isUserLogged()){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
             requestDispatcher.forward(request, response);
         }else {
