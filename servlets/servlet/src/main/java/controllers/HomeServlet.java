@@ -1,6 +1,6 @@
 package controllers;
 
-import utils.SessionProvider;
+import utils.Session;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,8 +16,8 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        SessionProvider sessionProvider = new SessionProvider(request.getSession());
-        if(sessionProvider.isUserLogged()){
+        Session session = Session.in(request.getSession());
+        if(session.isUserLogged()){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
             requestDispatcher.forward(request, response);
         }else {

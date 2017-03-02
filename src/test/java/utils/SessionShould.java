@@ -14,44 +14,34 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SessionProviderShould {
+public class SessionShould {
 
 
     private HttpSession httpSession;
-    private SessionProvider sessionProvider;
+    private Session session;
 
     @Before
     public void setUp() throws Exception {
         httpSession = mock(HttpSession.class);
-        sessionProvider = new SessionProvider(httpSession);
+        session = Session.in(httpSession);
     }
 
     @Test
-    public void login_an_user() {
+    public void login_a_user() {
         User user = new User("someUserName");
 
-        sessionProvider.login(user);
+        session.login(user);
 
         verify(httpSession).setAttribute(any(String.class), eq(user.name()));
     }
 
 
     @Test
-    public void logout_an_user() throws Exception {
+    public void logout_a_user() throws Exception {
 
-        sessionProvider.logout();
+        session.logout();
 
         verify(httpSession).invalidate();
-    }
-
-
-    @Test
-    public void tell_us_if_user_is_not_logged() throws Exception {
-        when(httpSession.getAttribute(any(String.class))).thenReturn("");
-
-        boolean userLogged = sessionProvider.isUserLogged();
-
-        assertThat(userLogged, is(false));
     }
 
 
@@ -59,9 +49,19 @@ public class SessionProviderShould {
     public void tell_us_if_user_is_logged() throws Exception {
         when(httpSession.getAttribute(any(String.class))).thenReturn("SomeSessionContent");
 
-        boolean userLogged = sessionProvider.isUserLogged();
+        boolean userLogged = session.isUserLogged();
 
         assertThat(userLogged, is(true));
+    }
+
+
+    @Test
+    public void tell_us_if_user_is_not_logged() throws Exception {
+        when(httpSession.getAttribute(any(String.class))).thenReturn("");
+
+        boolean userLogged = session.isUserLogged();
+
+        assertThat(userLogged, is(false));
     }
 
 

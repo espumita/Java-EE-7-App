@@ -1,6 +1,6 @@
 package controllers;
 
-import utils.SessionProvider;
+import utils.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +12,8 @@ import java.io.IOException;
 @WebServlet(name = "Logout", urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SessionProvider sessionProvider = new SessionProvider(request.getSession());
-        sessionProvider.logout();
+        Session session = Session.in(request.getSession());
+        session.logout();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

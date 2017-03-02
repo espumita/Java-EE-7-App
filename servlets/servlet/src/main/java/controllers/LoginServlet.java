@@ -1,6 +1,6 @@
 package controllers;
 
-import utils.SessionProvider;
+import utils.Session;
 import utils.User;
 
 import javax.servlet.ServletException;
@@ -14,8 +14,8 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SessionProvider sessionProvider = new SessionProvider(request.getSession());
-        sessionProvider.login(new User("Some User"));
+        Session session = Session.in(request.getSession());
+        session.login(new User("Some User"));
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
