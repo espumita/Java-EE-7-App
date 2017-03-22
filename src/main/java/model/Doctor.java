@@ -22,4 +22,8 @@ public class Doctor {
                 .filter(patient -> patient.id().equals(id))
                 .collect(Collectors.toList());
     }
+
+    public String example(){
+        return "Some Doctor Name";
+    }
 }

@@ -1,5 +1,6 @@
 package controllers;
 
+import model.Doctor;
 import utils.Session;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +19,8 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         Session session = Session.in(request.getSession());
         if(session.isUserLogged()){
-            request.setAttribute("session", "Long Jonson");
+            Doctor doctor = new Doctor();
+            request.setAttribute("doctor", doctor);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
             requestDispatcher.forward(request, response);
         }else {
