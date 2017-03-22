@@ -187,7 +187,7 @@
                                 <li><a href="javascript:;"> Profile</a></li>
                                 <li>
                                     <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span class="badge bg-green pull-right">100%</span>
                                         <span>Settings</span>
                                     </a>
                                 </li>
@@ -202,6 +202,9 @@
                                 <span class="badge bg-green">6</span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <%
+                                    for (int i = 0; i < 6; ++i) {
+                                %>
                                 <li>
                                     <a>
                                         <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
@@ -214,42 +217,9 @@
                         </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
+                                <%
+                                    }
+                                %>
                                 <li>
                                     <div class="text-center">
                                         <a>
