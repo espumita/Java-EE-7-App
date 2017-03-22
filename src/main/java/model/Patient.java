@@ -2,8 +2,14 @@ package model;
 
 public class Patient {
 
-    public Patient() {
+    private String id;
 
+    public Patient(String id) {
+
+        this.id = id;
     }
 
+    public String id() {
+        return id;
+    }
 }
