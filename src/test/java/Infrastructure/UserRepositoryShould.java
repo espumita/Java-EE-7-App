@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserRepositoryShould {
 
     private UserRepository userRepository;
-    private static final String SOME_USER_NAME = "SomeUserName";
+    private static final String SOME_USER_NAME = "someUserName";
 
     @Before
     public void setUp(){

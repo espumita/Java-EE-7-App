@@ -1,20 +1,24 @@
 package utils;
 
+import Infrastructure.UserRepository;
+import utils.exceptions.BadLoginException;
+
 import javax.servlet.http.HttpSession;
 
 public class Session {
 
     private final HttpSession httpSession;
+    private UserRepository userRepository;
 
-    private Session(HttpSession httpSession) {
+    public Session(HttpSession httpSession, UserRepository userRepository) {
         this.httpSession = httpSession;
+        this.userRepository = userRepository;
     }
 
-    public static Session in(HttpSession httpSession) {
-        return new Session(httpSession);
-    }
-
-    public void login(UserCredentials userCredentials) {
+    public void login(UserCredentials userCredentials) throws BadLoginException {
+        if(!userRepository.exist(userCredentials)){
+            throw new BadLoginException();
+        }
         httpSession.setAttribute("name", userCredentials.name());
     }
 

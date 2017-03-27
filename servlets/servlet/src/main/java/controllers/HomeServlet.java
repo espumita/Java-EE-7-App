@@ -1,5 +1,6 @@
 package controllers;
 
+import Infrastructure.UserMemoryRepository;
 import model.Doctor;
 import utils.Session;
 
@@ -17,9 +18,9 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        Session session = Session.in(request.getSession());
+        Session session = new Session(request.getSession(), new UserMemoryRepository());
         if(session.isUserLogged()){
-            Doctor doctor = new Doctor();
+            Doctor doctor = new Doctor("someName");
             request.setAttribute("doctor", doctor);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
             requestDispatcher.forward(request, response);

@@ -1,5 +1,6 @@
 package controllers;
 
+import Infrastructure.UserMemoryRepository;
 import utils.Session;
 import utils.UserCredentials;
 
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = Session.in(request.getSession());
+        Session session = new Session(request.getSession(), new UserMemoryRepository());
         session.login(new UserCredentials("Some UserCredentials"));
     }
 

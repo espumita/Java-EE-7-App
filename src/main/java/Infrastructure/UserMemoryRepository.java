@@ -7,7 +7,7 @@ public class UserMemoryRepository implements UserRepository {
 
     @Override
     public boolean exist(UserCredentials userCredentials) {
-        return userCredentials.name().equals("SomeUserName");
+        return userCredentials.name().equals("someUserName");
     }
 
 }
