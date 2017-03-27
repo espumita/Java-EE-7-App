@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Doctor {
 
-    private ArrayList<Patient> patients = new ArrayList<Patient>();
+    private List<Patient> patients = new ArrayList<Patient>();
 
     public List<Patient> patients() {
         return patients;
