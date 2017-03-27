@@ -3,6 +3,7 @@ package controllers;
 import Infrastructure.UserMemoryRepository;
 import utils.Session;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,8 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), new UserMemoryRepository());
-        session.logout();
+        if(session.isUserLogged()) session.logout();
+        //redirect
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -20,6 +20,7 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         Session session = new Session(request.getSession(), new UserMemoryRepository());
         if(session.isUserLogged()){
+            //Load and setAttribute user(medic or patient)
             Doctor doctor = new Doctor("someName");
             request.setAttribute("doctor", doctor);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
