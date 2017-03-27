@@ -1,9 +1,9 @@
 package utils;
 
-public class User {
+public class UserCredentials {
     private String name;
 
-    public User(String name) {
+    public UserCredentials(String name) {
 
         this.name = name;
     }

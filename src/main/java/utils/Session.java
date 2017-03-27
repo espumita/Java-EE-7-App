@@ -14,8 +14,8 @@ public class Session {
         return new Session(httpSession);
     }
 
-    public void login(User user) {
-        httpSession.setAttribute("name", user.name());
+    public void login(UserCredentials userCredentials) {
+        httpSession.setAttribute("name", userCredentials.name());
     }
 
     public void logout() {

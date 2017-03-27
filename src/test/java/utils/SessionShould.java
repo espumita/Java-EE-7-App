@@ -28,11 +28,11 @@ public class SessionShould {
 
     @Test
     public void login_a_user() {
-        User user = new User("someUserName");
+        UserCredentials userCredentials = new UserCredentials("someUserName");
 
-        session.login(user);
+        session.login(userCredentials);
 
-        verify(httpSession).setAttribute(any(String.class), eq(user.name()));
+        verify(httpSession).setAttribute(any(String.class), eq(userCredentials.name()));
     }
 
 
