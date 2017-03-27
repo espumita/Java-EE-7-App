@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Doctor {
+public class Doctor implements User{
 
     private List<Patient> patients = new ArrayList<Patient>();
+
+    public Doctor(String someUserName) {
+
+    }
 
     public List<Patient> patients() {
         return patients;

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Patient {
+public class Patient implements User {
 
     private String id;
     private List<Sample> samples = new ArrayList();
