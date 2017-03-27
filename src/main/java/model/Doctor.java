@@ -19,7 +19,7 @@ public class Doctor {
 
     public void removePatientWithId(String id) {
         patients = (ArrayList<Patient>) patients.stream()
-                .filter(patient -> patient.id().equals(id))
+                .filter(patient -> !patient.id().equals(id))
                 .collect(Collectors.toList());
     }
 
