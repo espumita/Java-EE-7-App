@@ -2,7 +2,6 @@ package model;
 
 import model.exceptions.IncompletePattient;
 import org.junit.Test;
-import utils.exceptions.BadLoginException;
 
 import java.util.Date;
 
@@ -11,6 +10,7 @@ import static com.googlecode.catchexception.apis.BDDCatchException.when;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class PatientShould {
 
@@ -36,6 +36,20 @@ public class PatientShould {
         when(patientBuilder).Build();
 
         then(caughtException()).isInstanceOf(IncompletePattient.class);
+    }
+
+    @Test
+    public void should_not_trow_an_exception_if_patient_is_complete() throws Exception, IncompletePattient {
+        PatientBuilder patientBuilder = new PatientBuilder()
+                .withGender("Male")
+                .withName("someName")
+                .withAddress("someAddress")
+                .withAge("someAge")
+                .withDNI("someDNI");
+
+        Object patient = patientBuilder.Build();
+
+        assertTrue(patient instanceof Patient);
     }
 }
 
