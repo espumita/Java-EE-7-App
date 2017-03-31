@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), new UserMemoryRepository());
         try {
-            session.login(new UserCredentials("SomeUserName"));
+            session.login(new UserCredentials("someUserName"));
         } catch (BadLoginException e) {
             //redirect
         }
