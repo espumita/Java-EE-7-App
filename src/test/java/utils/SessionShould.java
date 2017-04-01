@@ -23,12 +23,14 @@ public class SessionShould {
 
 
     private HttpSession httpSession;
+    private Log log;
     private Session session;
 
     @Before
     public void setUp() throws Exception {
         httpSession = Mockito.mock(HttpSession.class);
-        session = new Session(httpSession, new UserMemoryRepository());
+        log = Mockito.mock(Log.class);
+        session = new Session(httpSession, log,  new UserMemoryRepository());
     }
 
     @Test
@@ -47,6 +49,18 @@ public class SessionShould {
         when(session).login(userCredentials);
 
         then(caughtException()).isInstanceOf(BadLoginException.class);
+    }
+
+    @Test
+    public void log_the_exception_when_an_unknown_user_tries_to_login() throws BadLoginException {
+        UserCredentials userCredentials = new UserCredentials("unknownUser");
+
+        try {
+            session.login(userCredentials);
+        }catch (BadLoginException ex){
+            Mockito.verify(log).log(any(String.class));
+        }
+
     }
 
 

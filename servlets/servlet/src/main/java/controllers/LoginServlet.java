@@ -1,6 +1,7 @@
 package controllers;
 
 import Infrastructure.UserMemoryRepository;
+import utils.Log;
 import utils.Session;
 import utils.UserCredentials;
 import utils.exceptions.BadLoginException;
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = new Session(request.getSession(), new UserMemoryRepository());
+        Session session = new Session(request.getSession(), new Log(), new UserMemoryRepository());
         try {
             session.login(new UserCredentials("someUserName"));
         } catch (BadLoginException e) {
