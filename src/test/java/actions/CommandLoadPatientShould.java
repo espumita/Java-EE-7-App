@@ -1,21 +1,17 @@
 package actions;
 
 import infrastructure.PatientRepository;
-import model.Sample;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Date;
-
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
-
 @RunWith(MockitoJUnitRunner.class)
-public class CommandAddSampleShould {
+public class CommandLoadPatientShould {
 
     private PatientRepository patientRepository;
 
@@ -25,12 +21,11 @@ public class CommandAddSampleShould {
     }
 
     @Test
-    public void persist_the_sample() throws Exception {
-        Sample sample = new Sample("someLevel", new Date());
-        CommandAddSample commandAddSample = new CommandAddSample(sample, patientRepository ,"someDNI");
+    public void load_a_patient() throws Exception {
+        CommandLoadPatient commandLoadPatient = new CommandLoadPatient("someDni", patientRepository);
 
-        commandAddSample.run();
+        commandLoadPatient.run();
 
-        verify(patientRepository).addSample(eq(sample), eq("someDNI"));
+        verify(patientRepository).load(eq("someDni"));
     }
 }
