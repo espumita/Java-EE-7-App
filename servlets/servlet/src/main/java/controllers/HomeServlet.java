@@ -1,10 +1,12 @@
 package controllers;
 
 import Infrastructure.UserMemoryRepository;
+import beans.LogBeanInterface;
 import model.Doctor;
 import utils.Log;
 import utils.Session;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,9 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "Home", urlPatterns = "/home")
 public class HomeServlet extends javax.servlet.http.HttpServlet {
+
+    @EJB LogBeanInterface logBean;
+
 
     @Override
     public void init() throws ServletException {
