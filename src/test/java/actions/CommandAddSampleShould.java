@@ -1,5 +1,6 @@
 package actions;
 
+import infrastructure.PatientMemoryRepository;
 import infrastructure.PatientRepository;
 import model.Sample;
 import org.junit.Before;
