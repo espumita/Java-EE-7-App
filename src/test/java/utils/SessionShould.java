@@ -1,6 +1,8 @@
 package utils;
 
 import Infrastructure.UserMemoryRepository;
+import beans.LogBean;
+import beans.LogBeanInterface;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,18 +25,18 @@ public class SessionShould {
 
 
     private HttpSession httpSession;
-    private Log log;
+    private LogBean log;
     private Session session;
 
     @Before
     public void setUp() throws Exception {
         httpSession = Mockito.mock(HttpSession.class);
-        log = Mockito.mock(Log.class);
-        session = new Session(httpSession, log,  new UserMemoryRepository());
+        log = Mockito.mock(LogBean.class);
+        session = new Session(httpSession, log ,  new UserMemoryRepository());
     }
 
     @Test
-    public void login_a_user() throws BadLoginException {
+    public void login_a_user() throws Exception {
         UserCredentials userCredentials = new UserCredentials("someUserName");
 
         session.login(userCredentials);
@@ -43,7 +45,7 @@ public class SessionShould {
     }
 
     @Test
-    public void trow_an_exception_when_an_unknown_user_tries_to_login() throws BadLoginException {
+    public void trow_an_exception_when_an_unknown_user_tries_to_login() throws Exception {
         UserCredentials userCredentials = new UserCredentials("unknownUser");
 
         when(session).login(userCredentials);
@@ -52,7 +54,7 @@ public class SessionShould {
     }
 
     @Test
-    public void log_the_exception_when_an_unknown_user_tries_to_login() throws BadLoginException {
+    public void log_the_exception_when_an_unknown_user_tries_to_login() throws Exception {
         UserCredentials userCredentials = new UserCredentials("unknownUser");
 
         try {

@@ -1,6 +1,7 @@
 package utils;
 
 import Infrastructure.UserRepository;
+import beans.LogBeanInterface;
 import utils.exceptions.BadLoginException;
 
 import javax.servlet.http.HttpSession;
@@ -8,16 +9,16 @@ import javax.servlet.http.HttpSession;
 public class Session {
 
     private final HttpSession httpSession;
-    private Log log;
+    private LogBeanInterface log;
     private UserRepository userRepository;
 
-    public Session(HttpSession httpSession, Log log, UserRepository userRepository) {
+    public Session(HttpSession httpSession, LogBeanInterface log, UserRepository userRepository) {
         this.httpSession = httpSession;
         this.log = log;
         this.userRepository = userRepository;
     }
 
-    public void login(UserCredentials userCredentials) throws BadLoginException {
+    public void login(UserCredentials userCredentials) throws Exception {
         if(!userRepository.exist(userCredentials)){
             log.log(userCredentials.name());
             throw new BadLoginException();

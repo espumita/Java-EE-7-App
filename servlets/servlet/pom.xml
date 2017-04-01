@@ -49,6 +49,26 @@
            <groupId>root.project</groupId>
            <artifactId>ejbs</artifactId>
        </dependency>
+       <dependency>
+           <groupId>root.project</groupId>
+           <artifactId>ejbs</artifactId>
+           <version>1.0</version>
+       </dependency>
+       <dependency>
+           <groupId>root.project</groupId>
+           <artifactId>ejbs</artifactId>
+           <version>1.0</version>
+       </dependency>
+       <dependency>
+           <groupId>root.project</groupId>
+           <artifactId>ejbs</artifactId>
+           <version>1.0</version>
+       </dependency>
+       <dependency>
+           <groupId>root.project</groupId>
+           <artifactId>ejbs</artifactId>
+           <version>1.0</version>
+       </dependency>
 
    </dependencies>
 </project>

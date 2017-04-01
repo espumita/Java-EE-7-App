@@ -11,10 +11,12 @@ public class Log {
         this.writer = writer;
     }
 
-    public void log(String userName) {
+    public void log(String userName) throws Exception{
         try{
-            writer.println("Bad user login: " + userName + " at " + new Date());
+            writer.append("Bad user login: " + userName + " at " + new Date() + "\n");
             writer.close();
-        } catch (Exception e) { }
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }
