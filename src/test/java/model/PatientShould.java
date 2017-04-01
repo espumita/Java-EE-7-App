@@ -1,6 +1,6 @@
 package model;
 
-import model.exceptions.IncompletePattient;
+import model.exceptions.IncompletePatient;
 import org.junit.Test;
 
 import java.util.Date;
@@ -15,17 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class PatientShould {
 
     @Test
-    public void can_add_a_sample() throws Exception {
-        Patient patient = new Patient("someId");
-        Date now = new Date();
-
-        patient.add(new Sample("SomeGlucoseLevel", now));
-
-        assertThat(patient.samples().size(), is(1));
-    }
-
-    @Test
-    public void should_trow_an_exception_if_patient_is_incomplete() throws Exception, IncompletePattient {
+    public void should_trow_an_exception_if_patient_is_incomplete() throws Exception, IncompletePatient {
         PatientBuilder patientBuilder = new PatientBuilder()
                 .withGender("")
                 .withName("")
@@ -33,13 +23,13 @@ public class PatientShould {
                 .withAge(null)
                 .withDNI(null);
 
-        when(patientBuilder).Build();
+        when(patientBuilder).build();
 
-        then(caughtException()).isInstanceOf(IncompletePattient.class);
+        then(caughtException()).isInstanceOf(IncompletePatient.class);
     }
 
     @Test
-    public void should_not_trow_an_exception_if_patient_is_complete() throws Exception, IncompletePattient {
+    public void should_not_trow_an_exception_if_patient_is_complete() throws Exception, IncompletePatient {
         PatientBuilder patientBuilder = new PatientBuilder()
                 .withGender("Male")
                 .withName("someName")
@@ -47,9 +37,25 @@ public class PatientShould {
                 .withAge("someAge")
                 .withDNI("someDNI");
 
-        Object patient = patientBuilder.Build();
+        Object patient = patientBuilder.build();
 
         assertTrue(patient instanceof Patient);
+    }
+
+    @Test
+    public void can_add_a_sample() throws Exception {
+        Patient patient = new PatientBuilder()
+                .withGender("Male")
+                .withName("someName")
+                .withAddress("someAddress")
+                .withAge("someAge")
+                .withDNI("someDNI")
+                .build();
+        Date now = new Date();
+
+        patient.add(new Sample("SomeGlucoseLevel", now));
+
+        assertThat(patient.samples().size(), is(1));
     }
 }
 

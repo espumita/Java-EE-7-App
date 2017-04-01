@@ -10,12 +10,7 @@ public class Patient implements User {
     private String address;
     private String age;
     private String dni;
-    private String id;
     private List<Sample> samples = new ArrayList();
-
-    public Patient(String id) {
-        this.id = id;
-    }
 
     public Patient(String name, String gender, String address, String age, String dni) {
         this.name = name;
@@ -25,8 +20,8 @@ public class Patient implements User {
         this.dni = dni;
     }
 
-    public String id() {
-        return id;
+    public String dni(){
+        return dni;
     }
 
     public void add(Sample sample) {
