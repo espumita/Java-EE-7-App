@@ -1,6 +1,6 @@
 package utils;
 
-import Infrastructure.UserRepository;
+import infrastructure.UserRepository;
 import beans.LogBeanInterface;
 import utils.exceptions.BadLoginException;
 

@@ -1,7 +1,6 @@
 package controllers;
 
-import Infrastructure.UserMemoryRepository;
-import beans.LogBean;
+import infrastructure.UserMemoryRepository;
 import beans.LogBeanInterface;
 import model.Doctor;
 import utils.Session;

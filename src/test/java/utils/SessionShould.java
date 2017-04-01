@@ -1,8 +1,7 @@
 package utils;
 
-import Infrastructure.UserMemoryRepository;
+import infrastructure.UserMemoryRepository;
 import beans.LogBean;
-import beans.LogBeanInterface;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

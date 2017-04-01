@@ -1,6 +1,5 @@
-package Infrastructure;
+package infrastructure;
 
-import model.Doctor;
 import org.junit.Before;
 import org.junit.Test;
 import utils.UserCredentials;

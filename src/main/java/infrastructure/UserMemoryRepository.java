@@ -1,6 +1,5 @@
-package Infrastructure;
+package infrastructure;
 
-import model.User;
 import utils.UserCredentials;
 
 public class UserMemoryRepository implements UserRepository {

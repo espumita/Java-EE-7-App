@@ -1,11 +1,9 @@
 package controllers;
 
-import Infrastructure.UserMemoryRepository;
-import beans.LogBean;
+import infrastructure.UserMemoryRepository;
 import beans.LogBeanInterface;
 import utils.Session;
 import utils.UserCredentials;
-import utils.exceptions.BadLoginException;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
