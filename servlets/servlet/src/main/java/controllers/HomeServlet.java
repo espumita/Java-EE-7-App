@@ -9,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "Home", urlPatterns = "/home")
 public class HomeServlet extends javax.servlet.http.HttpServlet {
@@ -19,7 +20,7 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        Session session = new Session(request.getSession(), new Log(), new UserMemoryRepository());
+        Session session = new Session(request.getSession(), new Log(new PrintWriter("Log.txt", "UTF-8")), new UserMemoryRepository());
         if(session.isUserLogged()){
             //Load and setAttribute user(medic or patient)
             Doctor doctor = new Doctor("someName");
