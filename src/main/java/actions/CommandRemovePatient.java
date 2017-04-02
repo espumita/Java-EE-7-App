@@ -14,7 +14,6 @@ public class CommandRemovePatient implements Command{
         this.id = id;
     }
 
-    @Override
     public void run() {
         doctorRepository.removePatient(dni, id);
     }

@@ -1,5 +1,6 @@
 package utils;
 
+import actions.CommandLoadPatient;
 import infrastructure.UserRepository;
 import beans.LogBeanInterface;
 import model.User;
@@ -24,8 +25,7 @@ public class Session {
             log.log(userCredentials.dni());
             throw new BadLoginException();
         }
-        User user = userRepository.load(userCredentials.dni());
-        httpSession.setAttribute("user", user);
+        httpSession.setAttribute("dni", userCredentials.dni());
     }
 
     public void logout() {
@@ -33,6 +33,6 @@ public class Session {
     }
 
     public boolean isUserLogged() {
-        return  httpSession != null && httpSession.getAttribute("user") != null && httpSession.getAttribute("user") != "";
+        return  httpSession != null && httpSession.getAttribute("dni") != null && httpSession.getAttribute("dni") != "";
     }
 }

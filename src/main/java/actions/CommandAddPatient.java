@@ -15,7 +15,6 @@ public class CommandAddPatient implements Command {
         this.id = id;
     }
 
-    @Override
     public void run() {
         doctorRepository.addPatient(patient, id);
     }

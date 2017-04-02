@@ -1,6 +1,8 @@
 package actions;
 
 import infrastructure.PatientRepository;
+import model.Patient;
+import model.exceptions.IncompletePatient;
 
 public class CommandLoadPatient implements Command{
     private final String dni;
@@ -11,8 +13,7 @@ public class CommandLoadPatient implements Command{
         this.patientRepository = patientRepository;
     }
 
-    @Override
-    public void run() {
-        patientRepository.load(dni);
+    public Patient run() throws IncompletePatient {
+        return  patientRepository.load(dni);
     }
 }

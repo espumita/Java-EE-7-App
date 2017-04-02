@@ -16,7 +16,7 @@ public class CommandAddSample  implements  Command{
         this.dni = dni;
     }
 
-    @Override
+
     public void run() {
         patientRepository.addSample(sample, dni);
     }

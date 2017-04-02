@@ -1,9 +1,11 @@
 package infrastructure;
 
+import model.Patient;
 import model.Sample;
+import model.exceptions.IncompletePatient;
 
 public interface PatientRepository {
 
     void addSample(Sample sample, String dni);
-    void load(String dni);
+    Patient load(String dni) throws IncompletePatient;
 }
