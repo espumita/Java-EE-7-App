@@ -61,6 +61,17 @@
            <artifactId>ejbs</artifactId>
            <version>1.0</version>
        </dependency>
+       <dependency>
+           <groupId>root.project</groupId>
+           <artifactId>ejbs</artifactId>
+           <version>1.0</version>
+           <scope>test</scope>
+       </dependency>
+       <dependency>
+           <groupId>root.project</groupId>
+           <artifactId>ejbs</artifactId>
+           <version>1.0</version>
+       </dependency>
    </dependencies>
    <artifactId>project</artifactId>
    <packaging>pom</packaging>

@@ -26,7 +26,7 @@ public class LogShould {
 
         log.log("someName");
 
-        Mockito.verify(writer).println(any(String.class));
+        Mockito.verify(writer).append(any(String.class));
         Mockito.verify(writer).close();
     }
 }
