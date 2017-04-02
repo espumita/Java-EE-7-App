@@ -24,6 +24,21 @@ public class Patient implements User {
         return dni;
     }
 
+    public String gender() {
+        return gender;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public String address() {
+        return address;
+    }
+
+    public String age() {
+        return age;
+    }
     public void add(Sample sample) {
         samples.add(sample);
     }
@@ -31,6 +46,4 @@ public class Patient implements User {
     public List<Sample> samples() {
         return samples;
     }
-
-
 }

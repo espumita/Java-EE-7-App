@@ -2,6 +2,7 @@ package utils;
 
 import infrastructure.UserRepository;
 import beans.LogBeanInterface;
+import model.User;
 import utils.exceptions.BadLoginException;
 
 import javax.servlet.http.HttpSession;
@@ -20,10 +21,11 @@ public class Session {
 
     public void login(UserCredentials userCredentials) throws Exception {
         if(!userRepository.exist(userCredentials)){
-            log.log(userCredentials.name());
+            log.log(userCredentials.dni());
             throw new BadLoginException();
         }
-        httpSession.setAttribute("name", userCredentials.name());
+        User user = userRepository.load(userCredentials.dni());
+        httpSession.setAttribute("user", user);
     }
 
     public void logout() {
@@ -31,6 +33,6 @@ public class Session {
     }
 
     public boolean isUserLogged() {
-        return  httpSession != null && httpSession.getAttribute("name") != null && httpSession.getAttribute("name") != "";
+        return  httpSession != null && httpSession.getAttribute("user") != null && httpSession.getAttribute("user") != "";
     }
 }

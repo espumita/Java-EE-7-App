@@ -8,7 +8,7 @@ public class UserCredentials {
         this.name = name;
     }
 
-    public String name() {
+    public String dni() {
         return name;
     }
 }

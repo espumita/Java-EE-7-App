@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         try {
-            session.login(new UserCredentials("someUserName2"));
+            session.login(new UserCredentials("patient"));
         } catch (Exception e) {
             //redirect
         }

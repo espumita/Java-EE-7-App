@@ -1,5 +1,6 @@
 package actions;
 
+import infrastructure.DoctorRepository;
 import model.Patient;
 
 public class CommandAddPatient implements Command {

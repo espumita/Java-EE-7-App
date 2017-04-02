@@ -1,6 +1,6 @@
 package actions;
 
-import infrastructure.PatientRepository;
+import infrastructure.DoctorRepository;
 import model.Patient;
 import model.PatientBuilder;
 import org.junit.Before;

@@ -1,8 +1,8 @@
-package actions;
+package infrastructure;
 
 import model.Patient;
 
-interface DoctorRepository {
+public interface DoctorRepository {
     void addPatient(Patient patient, String id);
 
     void removePatient(String dni, String id);

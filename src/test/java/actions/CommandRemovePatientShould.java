@@ -1,8 +1,7 @@
 package actions;
 
 
-import model.Patient;
-import model.PatientBuilder;
+import infrastructure.DoctorRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

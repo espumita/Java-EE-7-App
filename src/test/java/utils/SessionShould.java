@@ -2,6 +2,7 @@ package utils;
 
 import infrastructure.UserMemoryRepository;
 import beans.LogBean;
+import model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import static com.googlecode.catchexception.apis.BDDCatchException.caughtException;
 import static com.googlecode.catchexception.apis.BDDCatchException.when;
+import static org.assertj.core.api.Assertions.anyOf;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -36,11 +38,11 @@ public class SessionShould {
 
     @Test
     public void login_a_user() throws Exception {
-        UserCredentials userCredentials = new UserCredentials("someUserName");
+        UserCredentials userCredentials = new UserCredentials("someDni");
 
         session.login(userCredentials);
 
-        Mockito.verify(httpSession).setAttribute(any(String.class), eq(userCredentials.name()));
+        Mockito.verify(httpSession).setAttribute(any(String.class), any(User.class));
     }
 
     @Test
