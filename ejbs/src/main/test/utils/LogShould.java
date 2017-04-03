@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.io.PrintWriter;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LogShould {
@@ -17,7 +18,7 @@ public class LogShould {
 
     @Before
     public void setUp() throws Exception {
-        writer = Mockito.mock(PrintWriter.class);
+        writer = mock(PrintWriter.class);
     }
 
     @Test
@@ -26,7 +27,7 @@ public class LogShould {
 
         log.log("someName");
 
-        Mockito.verify(writer).append(any(String.class));
-        Mockito.verify(writer).close();
+        verify(writer).append(any(String.class));
+        verify(writer).close();
     }
 }

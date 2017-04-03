@@ -27,7 +27,8 @@ public class PatientProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         if(session.isUserLogged()){
-            CommandLoadPatient command = new CommandLoadPatient(request.getSession().getAttribute("dni").toString(), new PatientMemoryRepository());
+            PatientMemoryRepository patientRepository = new PatientMemoryRepository();
+            CommandLoadPatient command = new CommandLoadPatient(request.getSession().getAttribute("dni").toString(), patientRepository);
             Patient patient = null;
             try {
                 patient = command.run();
