@@ -1,6 +1,6 @@
 package model;
 
-import model.exceptions.IncompletePattient;
+import model.exceptions.IncompletePatient;
 
 import java.util.Objects;
 
@@ -36,13 +36,13 @@ public class PatientBuilder {
         return this;
     }
 
-    public Patient Build() throws IncompletePattient {
+    public Patient build() throws IncompletePatient {
         if(name == null || Objects.equals(name, "") ||
            gender == null || Objects.equals(gender, "") ||
            address == null || Objects.equals(address, "") ||
            age == null || Objects.equals(age, "") ||
            dni == null || Objects.equals(dni, "")
-           ) throw new IncompletePattient() ;
+           ) throw new IncompletePatient() ;
         return new Patient(name, gender, address, age, dni);
     }
 }

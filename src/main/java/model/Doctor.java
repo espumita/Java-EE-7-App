@@ -21,9 +21,9 @@ public class Doctor implements User{
         patients.add(patient);
     }
 
-    public void removePatientWithId(String id) {
+    public void removePatientWithId(String dni) {
         patients = (ArrayList<Patient>) patients.stream()
-                .filter(patient -> !patient.id().equals(id))
+                .filter(patient -> !patient.dni().equals(dni))
                 .collect(Collectors.toList());
     }
 

@@ -1,6 +1,9 @@
 package utils;
 
-import Infrastructure.UserRepository;
+import actions.CommandLoadPatient;
+import infrastructure.UserRepository;
+import beans.LogBeanInterface;
+import model.User;
 import utils.exceptions.BadLoginException;
 
 import javax.servlet.http.HttpSession;
@@ -8,18 +11,21 @@ import javax.servlet.http.HttpSession;
 public class Session {
 
     private final HttpSession httpSession;
+    private LogBeanInterface log;
     private UserRepository userRepository;
 
-    public Session(HttpSession httpSession, UserRepository userRepository) {
+    public Session(HttpSession httpSession, LogBeanInterface log, UserRepository userRepository) {
         this.httpSession = httpSession;
+        this.log = log;
         this.userRepository = userRepository;
     }
 
-    public void login(UserCredentials userCredentials) throws BadLoginException {
+    public void login(UserCredentials userCredentials) throws Exception {
         if(!userRepository.exist(userCredentials)){
+            log.log(userCredentials.dni());
             throw new BadLoginException();
         }
-        httpSession.setAttribute("name", userCredentials.name());
+        httpSession.setAttribute("dni", userCredentials.dni());
     }
 
     public void logout() {
@@ -27,6 +33,6 @@ public class Session {
     }
 
     public boolean isUserLogged() {
-        return  httpSession != null && httpSession.getAttribute("name") != null && httpSession.getAttribute("name") != "";
+        return  httpSession != null && httpSession.getAttribute("dni") != null && httpSession.getAttribute("dni") != "";
     }
 }

@@ -1,6 +1,8 @@
 package utils;
 
-import Infrastructure.UserMemoryRepository;
+import infrastructure.UserMemoryRepository;
+import beans.LogBean;
+import model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import static com.googlecode.catchexception.apis.BDDCatchException.caughtException;
 import static com.googlecode.catchexception.apis.BDDCatchException.when;
+import static org.assertj.core.api.Assertions.anyOf;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,30 +26,44 @@ public class SessionShould {
 
 
     private HttpSession httpSession;
+    private LogBean log;
     private Session session;
 
     @Before
     public void setUp() throws Exception {
         httpSession = Mockito.mock(HttpSession.class);
-        session = new Session(httpSession, new UserMemoryRepository());
+        log = Mockito.mock(LogBean.class);
+        session = new Session(httpSession, log ,  new UserMemoryRepository());
     }
 
     @Test
-    public void login_a_user() throws BadLoginException {
-        UserCredentials userCredentials = new UserCredentials("someUserName");
+    public void login_a_user() throws Exception {
+        UserCredentials userCredentials = new UserCredentials("someDni");
 
         session.login(userCredentials);
 
-        Mockito.verify(httpSession).setAttribute(any(String.class), eq(userCredentials.name()));
+        Mockito.verify(httpSession).setAttribute(any(String.class), any(User.class));
     }
 
     @Test
-    public void trow_an_exception_when_an_unknown_user_tries_to_login() throws BadLoginException {
+    public void trow_an_exception_when_an_unknown_user_tries_to_login() throws Exception {
         UserCredentials userCredentials = new UserCredentials("unknownUser");
 
         when(session).login(userCredentials);
 
         then(caughtException()).isInstanceOf(BadLoginException.class);
+    }
+
+    @Test
+    public void log_the_exception_when_an_unknown_user_tries_to_login() throws Exception {
+        UserCredentials userCredentials = new UserCredentials("unknownUser");
+
+        try {
+            session.login(userCredentials);
+        }catch (BadLoginException ex){
+            Mockito.verify(log).log(any(String.class));
+        }
+
     }
 
 
