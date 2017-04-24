@@ -3,10 +3,14 @@ package actions;
 import infrastructure.DoctorRepository;
 import model.Patient;
 import model.PatientBuilder;
+import model.Sample;
+import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Date;
 
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -30,6 +34,8 @@ public class CommandAddPatientShould {
                 .withAddress("someAddress")
                 .withAge("someAge")
                 .withDNI("someDNI")
+                .withSamplesHistory(Lists.newArrayList(
+                        new Sample("someGlucoseLevel", new Date())))
                 .build();
         CommandAddPatient commandAddPatient = new CommandAddPatient(patient, doctorRepository ,"someId");
 

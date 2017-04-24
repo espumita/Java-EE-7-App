@@ -4,6 +4,9 @@ import model.Patient;
 import model.PatientBuilder;
 import model.Sample;
 import model.exceptions.IncompletePatient;
+import org.assertj.core.util.Lists;
+
+import java.util.Date;
 
 public class PatientMemoryRepository implements PatientRepository{
 
@@ -20,6 +23,8 @@ public class PatientMemoryRepository implements PatientRepository{
                     .withAddress("Madrid")
                     .withAge("30")
                     .withDNI(dni)
+                    .withSamplesHistory(Lists.newArrayList(
+                            new Sample("100", new Date())))
                     .build();
             return patient;
         }
