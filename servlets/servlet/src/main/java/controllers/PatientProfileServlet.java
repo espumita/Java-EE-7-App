@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "PatientProfileServlet", urlPatterns = "/PatientProfile")
+@WebServlet(name = "PatientProfileServlet", urlPatterns = "/patient")
 public class PatientProfileServlet extends HttpServlet {
 
     @EJB
@@ -27,8 +27,9 @@ public class PatientProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         if(session.isUserLogged()){
+            String dni = request.getSession().getAttribute("dni").toString();
             PatientMemoryRepository patientRepository = new PatientMemoryRepository();
-            CommandLoadPatient command = new CommandLoadPatient(request.getSession().getAttribute("dni").toString(), patientRepository);
+            CommandLoadPatient command = new CommandLoadPatient(dni, patientRepository);
             Patient patient = null;
             try {
                 patient = command.run();

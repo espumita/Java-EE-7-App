@@ -16,9 +16,9 @@ public class PatientMemoryRepository implements PatientRepository{
         if (dni.equals("patient")) {
             Patient patient = new PatientBuilder()
                     .withGender("Male")
-                    .withName("someName")
-                    .withAddress("someAddress")
-                    .withAge("someAge")
+                    .withName("David Jesus")
+                    .withAddress("Madrid")
+                    .withAge("30")
                     .withDNI(dni)
                     .build();
             return patient;
