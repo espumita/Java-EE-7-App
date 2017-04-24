@@ -24,7 +24,8 @@ public class PatientMemoryRepository implements PatientRepository{
                     .withAge("30")
                     .withDNI(dni)
                     .withSamplesHistory(Lists.newArrayList(
-                            new Sample("100", new Date())))
+                            new Sample("100", new Date()),
+                            new Sample("80", new Date())))
                     .build();
             return patient;
         }

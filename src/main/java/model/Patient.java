@@ -10,7 +10,7 @@ public class Patient implements User {
     private String address;
     private String age;
     private String dni;
-    private List<Sample> samplesHistory;
+    private List<Sample> samplesHistory = new ArrayList<>();
 
     public Patient(String name, String gender, String address, String age, String dni, ArrayList samplesHistory) {
         this.name = name;
@@ -45,7 +45,7 @@ public class Patient implements User {
         samplesHistory.add(sample);
     }
 
-    public List<Sample> sampleHistory() {
-        return samplesHistory;
+    public ArrayList<Sample> sampleHistory() {
+        return (ArrayList<Sample>) samplesHistory;
     }
 }
