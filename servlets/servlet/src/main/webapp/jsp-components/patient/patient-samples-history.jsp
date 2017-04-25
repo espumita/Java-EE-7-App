@@ -3,14 +3,15 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>Value</th>
         <th>Date</th>
-        <th>Graph</th>
+        <th>Value</th>
+        <th>State</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${samples}" var="sample">
         <tr>
+            <td><c:out value="${samples.indexOf(sample) + 1}"/></td>
             <td><c:out value="${sample.date()}"/></td>
             <td><c:out value="${sample.glucoseLevel()}"/></td>
             <td class="vertical-align-mid">
