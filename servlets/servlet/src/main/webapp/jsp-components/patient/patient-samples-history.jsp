@@ -9,9 +9,9 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${samples}" var="sample">
+    <c:forEach items="${user.sampleHistory()}" var="sample">
         <tr>
-            <td><c:out value="${samples.indexOf(sample) + 1}"/></td>
+            <td><c:out value="${user.sampleHistory().indexOf(sample) + 1}"/></td>
             <td><c:out value="${sample.date()}"/></td>
             <td><c:out value="${sample.glucoseLevel()}"/></td>
             <td class="vertical-align-mid">

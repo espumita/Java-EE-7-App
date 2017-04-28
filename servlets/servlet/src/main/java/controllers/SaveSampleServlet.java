@@ -1,12 +1,11 @@
 package controllers;
 
-import actions.CommandLoadPatient;
+import actions.CommandAddSample;
 import beans.LogBeanInterface;
 import infrastructure.PatientMemoryRepository;
+import infrastructure.PatientRepository;
 import infrastructure.UserMemoryRepository;
-import model.Patient;
 import model.Sample;
-import model.exceptions.IncompletePatient;
 import utils.Session;
 
 import javax.ejb.EJB;
@@ -17,35 +16,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.Date;
 
 
-@WebServlet(name = "PatientProfileServlet", urlPatterns = "/patient")
-public class PatientProfileServlet extends HttpServlet {
+@WebServlet(name = "SaveSampleServlet", urlPatterns = "/saveSample")
+public class SaveSampleServlet extends HttpServlet {
 
     @EJB
     LogBeanInterface logBean;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         if(session.isUserLogged()){
+
+            String sampleValue = ((String) request.getParameter("sampleValue"));
             String dni = request.getSession().getAttribute("dni").toString();
             PatientMemoryRepository patientRepository = PatientMemoryRepository.getInstance();
-            CommandLoadPatient command = new CommandLoadPatient(dni, patientRepository);
-            Patient patient = null;
-            try {
-                patient = command.run();
-            } catch (IncompletePatient incompletePatient) { }
-            request.setAttribute("user", patient);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientProfile.jsp");
-            requestDispatcher.forward(request, response);
+            Sample sample = new Sample(sampleValue, new Date());
+            CommandAddSample command = new CommandAddSample(sample, patientRepository, dni);
+            command.run();
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
         }else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("out.jsp");
             requestDispatcher.forward(request, response);
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

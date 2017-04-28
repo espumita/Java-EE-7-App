@@ -56,9 +56,9 @@
                         <div id="myTabContent" class="tab-content">
                             <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="profile-tab">
 
-                                <!-- start user projects -->
+                                <!-- start samples history -->
                                 <jsp:include page="patient-samples-history.jsp"/>
-                                <!-- end user projects -->
+                                <!-- end samples history -->
 
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="home-tab">
