@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SessionShould {
@@ -42,7 +43,7 @@ public class SessionShould {
 
         session.login(userCredentials);
 
-        Mockito.verify(httpSession).setAttribute(any(String.class), any(User.class));
+        verify(httpSession).setAttribute(any(String.class), any(User.class));
     }
 
     @Test
@@ -58,12 +59,10 @@ public class SessionShould {
     public void log_the_exception_when_an_unknown_user_tries_to_login() throws Exception {
         UserCredentials userCredentials = new UserCredentials("unknownUser");
 
-        try {
-            session.login(userCredentials);
-        }catch (BadLoginException ex){
-            Mockito.verify(log).log(any(String.class));
-        }
+        when(session).login(userCredentials);
 
+        verify(log).log(any(String.class));
+        then(caughtException()).isInstanceOf(BadLoginException.class);
     }
 
 
@@ -72,7 +71,7 @@ public class SessionShould {
 
         session.logout();
 
-        Mockito.verify(httpSession).invalidate();
+        verify(httpSession).invalidate();
     }
 
 

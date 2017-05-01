@@ -2,6 +2,8 @@ package model;
 
 import model.exceptions.IncompletePatient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PatientBuilder {
@@ -10,6 +12,7 @@ public class PatientBuilder {
     private String address;
     private String age;
     private String dni;
+    private ArrayList<Sample> samplesHistory;
 
     public PatientBuilder withGender(String gender) {
         this.gender = gender;
@@ -36,13 +39,19 @@ public class PatientBuilder {
         return this;
     }
 
+    public PatientBuilder withSamplesHistory(ArrayList<Sample> sampleList) {
+        this.samplesHistory = sampleList;
+        return this;
+    }
+
     public Patient build() throws IncompletePatient {
         if(name == null || Objects.equals(name, "") ||
            gender == null || Objects.equals(gender, "") ||
            address == null || Objects.equals(address, "") ||
            age == null || Objects.equals(age, "") ||
-           dni == null || Objects.equals(dni, "")
+           dni == null || Objects.equals(dni, "") ||
+           samplesHistory == null
            ) throw new IncompletePatient() ;
-        return new Patient(name, gender, address, age, dni);
+        return new Patient(name, gender, address, age, dni, samplesHistory);
     }
 }

@@ -1,8 +1,10 @@
 package model;
 
 import model.exceptions.IncompletePatient;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static com.googlecode.catchexception.apis.BDDCatchException.caughtException;
@@ -30,12 +32,17 @@ public class PatientShould {
 
     @Test
     public void should_not_trow_an_exception_if_patient_is_complete() throws Exception, IncompletePatient {
+        ArrayList<Sample> sampleList = Lists.newArrayList(
+                new Sample("someGlucoseLevel", new Date())
+        );
         PatientBuilder patientBuilder = new PatientBuilder()
                 .withGender("Male")
                 .withName("someName")
                 .withAddress("someAddress")
                 .withAge("someAge")
-                .withDNI("someDNI");
+                .withDNI("someDNI")
+                .withSamplesHistory(sampleList);
+
 
         Object patient = patientBuilder.build();
 
@@ -50,12 +57,13 @@ public class PatientShould {
                 .withAddress("someAddress")
                 .withAge("someAge")
                 .withDNI("someDNI")
+                .withSamplesHistory(new ArrayList<>())
                 .build();
         Date now = new Date();
 
         patient.add(new Sample("SomeGlucoseLevel", now));
 
-        assertThat(patient.samples().size(), is(1));
+        assertThat(patient.sampleHistory().size(), is(1));
     }
 }
 

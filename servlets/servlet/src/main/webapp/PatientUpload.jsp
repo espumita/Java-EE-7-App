@@ -14,7 +14,7 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <jsp:include page="jsp-components/patient/patient-right.jsp" />
+        <jsp:include page="jsp-components/patient/patient-upload.jsp" />
         <!-- /page content -->
 
         <!-- footer content -->
