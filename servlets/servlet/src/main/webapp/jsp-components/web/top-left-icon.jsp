@@ -1,0 +1,1 @@
+<a href="./login" class="site_title"><i class="fa fa-heart"></i> <span>Glucose App!</span></a>

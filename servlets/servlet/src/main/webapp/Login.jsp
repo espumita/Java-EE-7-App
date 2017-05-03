@@ -8,7 +8,9 @@
         <div class="animate form login_form">
             <section class="login_content">
                 <form action="./checkLogin" method="post">
-                    <h1>Login Form</h1>
+                    <h1><i class="fa fa-heart"></i> Glucose App!</h1>
+                    <div class="clearfix"></div>
+
                     <div>
                         <input type="text" name="dni" class="form-control" placeholder="DNI">
                     </div>
@@ -16,7 +18,7 @@
                         <input type="password" name="password" class="form-control" placeholder="Password">
                     </div>
                     <div>
-                        <button>Log in</button>
+                        <button class="btn btn-success">Log in</button>
                         <a class="reset_pass" href="#">Lost your password?</a>
                     </div>
 
@@ -24,11 +26,7 @@
 
                     <div class="separator">
 
-                        <div class="clearfix"></div>
-                        <br>
-
                         <div>
-                            <h1><i class="fa fa-heart"></i> Glucose App!</h1>
                             <p>©2016 All Rights Reserved.</p>
                         </div>
                     </div>
