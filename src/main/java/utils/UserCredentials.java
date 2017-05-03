@@ -1,14 +1,14 @@
 package utils;
 
 public class UserCredentials {
-    private String name;
+    private String dni;
 
-    public UserCredentials(String name) {
+    public UserCredentials(String dni) {
 
-        this.name = name;
+        this.dni = dni;
     }
 
     public String dni() {
-        return name;
+        return dni;
     }
 }

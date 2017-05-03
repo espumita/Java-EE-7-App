@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class DoctorRepositoryShould {
 
     private DoctorRepository doctorRepository;
-    private static final String SOME_DNI = "someDni";
+    private static final String SOME_DNI = "patient";
 
     @Before
     public void setUp(){

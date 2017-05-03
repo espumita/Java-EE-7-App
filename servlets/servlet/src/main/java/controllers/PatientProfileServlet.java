@@ -1,9 +1,12 @@
 package controllers;
 
 import actions.CommandLoadPatient;
+import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
+import infrastructure.DoctorMemoryRepository;
 import infrastructure.PatientMemoryRepository;
 import infrastructure.UserMemoryRepository;
+import model.Doctor;
 import model.Patient;
 import model.Sample;
 import model.exceptions.IncompletePatient;
@@ -31,12 +34,19 @@ public class PatientProfileServlet extends HttpServlet {
         if(session.isUserLogged()){
             String dni = request.getSession().getAttribute("dni").toString();
             PatientMemoryRepository patientRepository = PatientMemoryRepository.getInstance();
-            CommandLoadPatient command = new CommandLoadPatient(dni, patientRepository);
+            CommandLoadPatient patientCommand = new CommandLoadPatient(dni, patientRepository);
             Patient patient = null;
             try {
-                patient = command.run();
+                patient = patientCommand.run();
             } catch (IncompletePatient incompletePatient) { }
             request.setAttribute("user", patient);
+
+            DoctorMemoryRepository doctorRepository = new DoctorMemoryRepository();
+            CommandLoadPatientDoctor doctorCommand = new CommandLoadPatientDoctor(doctorRepository, dni);
+            Doctor doctor = doctorCommand.run();
+            request.setAttribute("doctor", doctor);
+
+
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientProfile.jsp");
             requestDispatcher.forward(request, response);
         }else {
