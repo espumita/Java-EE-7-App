@@ -20,7 +20,7 @@ public class DoctorRepositoryShould {
     @Test
     public void load_a_doctor_when_the_patient_has_a_doctor() throws Exception {
 
-        Doctor doctor = doctorRepository.load(SOME_DNI);
+        Doctor doctor = doctorRepository.simpleLoad(SOME_DNI);
 
         assertTrue(doctor instanceof Doctor);
     }
@@ -28,7 +28,7 @@ public class DoctorRepositoryShould {
     @Test
     public void load_a_not_assigned_doctor_when_the_patient_has_no_doctor() throws Exception {
 
-        Doctor doctor = doctorRepository.load("otherDni");
+        Doctor doctor = doctorRepository.simpleLoad("otherDni");
 
         assertTrue(doctor instanceof NotAssignedDoctor);
     }

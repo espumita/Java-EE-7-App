@@ -11,5 +11,5 @@ public interface DoctorRepository {
 
     void removePatient(String dni, String id);
 
-    Doctor load(String dni);
+    Doctor simpleLoad(String dni);
 }

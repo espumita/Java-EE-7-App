@@ -17,7 +17,7 @@ public class DoctorMemoryRepository implements DoctorRepository {
     }
 
     @Override
-    public Doctor load(String dni) {
+    public Doctor simpleLoad(String dni) {
         return (dni.equals("patient")) ? new Doctor("Jhon Smith") :
                 new NotAssignedDoctor();
 

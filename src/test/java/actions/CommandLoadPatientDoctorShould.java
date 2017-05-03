@@ -27,6 +27,6 @@ public class CommandLoadPatientDoctorShould {
 
         commandLoadPatientDoctor.run();
 
-        verify(doctorRepository).load(eq(dni));
+        verify(doctorRepository).simpleLoad(eq(dni));
     }
 }

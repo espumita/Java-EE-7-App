@@ -14,6 +14,6 @@ public class CommandLoadPatientDoctor implements Command {
     }
 
     public Doctor run() {
-        return doctorRepository.load(dni);
+        return doctorRepository.simpleLoad(dni);
     }
 }
