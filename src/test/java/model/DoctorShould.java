@@ -30,7 +30,7 @@ public class DoctorShould {
 
     @Test
     public void can_add_a_patient_to_his_list_of_patients() throws Exception {
-        Doctor doctor = new Doctor("SomeName");
+        Doctor doctor = new Doctor("Jhon Smith", "SomeName");
 
         doctor.add(patient);
 
@@ -39,7 +39,7 @@ public class DoctorShould {
 
     @Test
     public void can_remove_a_patient_form_his_list_of_patients() throws Exception {
-        Doctor doctor = new Doctor("SomeName");
+        Doctor doctor = new Doctor("Jhon Smith", "SomeName");
         doctor.add(patient);
 
         doctor.removePatientWithId("someDNI");

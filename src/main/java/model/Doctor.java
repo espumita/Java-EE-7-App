@@ -6,10 +6,12 @@ import java.util.stream.Collectors;
 
 public class Doctor implements User{
 
+    private String dni;
     private final String name;
     private List<Patient> patients = new ArrayList<Patient>();
 
-    public Doctor(String name) {
+    public Doctor(String dni, String name) {
+        this.dni = dni;
         this.name = name;
     }
 
@@ -25,16 +27,16 @@ public class Doctor implements User{
         patients.add(patient);
     }
 
-    public void removePatientWithId(String dni) {
+    public void removePatientWithId(String patientDni) {
         patients = (ArrayList<Patient>) patients.stream()
-                .filter(patient -> !patient.dni().equals(dni))
+                .filter(patient -> !patient.dni().equals(patientDni))
                 .collect(Collectors.toList());
     }
 
     public static class NotAssignedDoctor extends Doctor{
 
         public NotAssignedDoctor() {
-            super("Not assigned");
+            super("Jhon Smith", "Not assigned");
         }
     }
 }

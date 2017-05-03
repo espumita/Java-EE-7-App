@@ -2,6 +2,7 @@ package infrastructure;
 
 import model.Doctor;
 import model.Patient;
+import model.exceptions.IncompletePatient;
 
 public interface DoctorRepository {
 
@@ -11,5 +12,7 @@ public interface DoctorRepository {
 
     void removePatient(String dni, String id);
 
-    Doctor simpleLoad(String dni);
+    Doctor simpleLoad(String patientDni);
+
+    Doctor fullLoad(String doctorDni) throws IncompletePatient;
 }

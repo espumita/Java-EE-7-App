@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import static model.Doctor.*;
 import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DoctorRepositoryShould {
 
@@ -31,5 +33,13 @@ public class DoctorRepositoryShould {
         Doctor doctor = doctorRepository.simpleLoad("otherDni");
 
         assertTrue(doctor instanceof NotAssignedDoctor);
+    }
+
+    @Test
+    public void full_load_a_doctor() throws Exception {
+
+        Doctor doctor = doctorRepository.fullLoad("aDni");
+
+        assertThat(doctor.patients().size(), is(3));
     }
 }
