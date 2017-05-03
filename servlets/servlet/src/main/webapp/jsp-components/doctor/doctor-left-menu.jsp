@@ -27,14 +27,15 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="/patient">Patients</a></li>
-                            <li><a href="/doctor">Profile</a></li>
+                            <li><a href="./list">Patients</a></li>
+                            <li><a href="./list">Add Patient</a></li>
+                            <li><a href="">Profile</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Questions <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="form.html">Questions</a></li>
-                            <li><a href="form_advanced.html">Alerts</a></li>
+                            <li><a href="">Questions</a></li>
+                            <li><a href="">Alerts</a></li>
                         </ul>
                 </ul>
             </div>
