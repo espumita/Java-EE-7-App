@@ -6,10 +6,15 @@ import java.util.stream.Collectors;
 
 public class Doctor implements User{
 
+    private final String name;
     private List<Patient> patients = new ArrayList<Patient>();
 
-    public Doctor(String someUserName) {
+    public Doctor(String name) {
+        this.name = name;
+    }
 
+    public String name() {
+        return name;
     }
 
     public List<Patient> patients() {
@@ -17,7 +22,6 @@ public class Doctor implements User{
     }
 
     public void add(Patient patient) {
-
         patients.add(patient);
     }
 
@@ -27,7 +31,10 @@ public class Doctor implements User{
                 .collect(Collectors.toList());
     }
 
-    public String example(){
-        return "Some Doctor Name";
+    public static class NotAssignedDoctor extends Doctor{
+
+        public NotAssignedDoctor() {
+            super("Not assigned");
+        }
     }
 }
