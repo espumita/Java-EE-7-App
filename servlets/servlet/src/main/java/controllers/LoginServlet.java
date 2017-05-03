@@ -6,6 +6,7 @@ import utils.Session;
 import utils.UserCredentials;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +22,11 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
-        try {
-            session.login(new UserCredentials("patient"));
-        } catch (Exception e) {
-            //redirect
+        if(session.isUserLogged()){
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+        }else{
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login.jsp");
+            requestDispatcher.forward(request, response);
         }
     }
 
