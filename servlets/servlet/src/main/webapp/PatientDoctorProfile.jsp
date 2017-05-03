@@ -3,22 +3,20 @@
 <html>
 <head>
     <jsp:include page="jsp-components/dependencies/head.jsp" />
-
 </head>
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
         <!-- left menu -->
-        <jsp:include page="jsp-components/doctor/doctor-left-menu.jsp" />
+        <jsp:include page="jsp-components/patient/patient-left-menu.jsp" />
         <!-- /left menu -->
 
         <!-- top navigation -->
         <jsp:include page="jsp-components/web/top-nav.jsp" />
-        " />
         <!-- /top navigation -->
 
         <!-- page content -->
-        <jsp:include page="jsp-components/doctor/doctor-center.jsp" />
+        <jsp:include page="jsp-components/patient/patient-doctor-right.jsp" />
         <!-- /page content -->
 
         <!-- footer content -->

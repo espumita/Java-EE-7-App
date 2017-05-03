@@ -19,6 +19,10 @@ public class Doctor implements User{
         return name;
     }
 
+    public String dni() {
+        return dni;
+    }
+
     public List<Patient> patients() {
         return patients;
     }
