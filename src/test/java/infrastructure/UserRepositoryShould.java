@@ -34,4 +34,5 @@ public class UserRepositoryShould {
 
         assertThat(exist, is(false));
     }
+
 }
