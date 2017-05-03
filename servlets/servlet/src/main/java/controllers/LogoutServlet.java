@@ -22,7 +22,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         if(session.isUserLogged()) session.logout();
-        //redirect
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

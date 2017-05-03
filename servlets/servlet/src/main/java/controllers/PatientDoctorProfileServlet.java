@@ -1,6 +1,7 @@
 package controllers;
 
 import actions.CommandLoadDoctor;
+import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
 import infrastructure.DoctorMemoryRepository;
 import infrastructure.UserMemoryRepository;
@@ -26,13 +27,11 @@ public class PatientDoctorProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         if(session.isUserLogged()){
-            String doctorDni = "45345345N";
+            String patientDni = request.getSession().getAttribute("dni").toString();
             DoctorMemoryRepository doctorRepository = new DoctorMemoryRepository();
-            CommandLoadDoctor command = new CommandLoadDoctor(doctorRepository, doctorDni);
-            Doctor doctor = null;
-            try {
-                doctor = command.run();
-            } catch (IncompletePatient incompletePatient) { }
+            CommandLoadPatientDoctor command = new CommandLoadPatientDoctor(doctorRepository, patientDni);
+            Doctor doctor = command.run();
+
             request.setAttribute("doctor", doctor);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientDoctorProfile.jsp");
