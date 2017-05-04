@@ -37,4 +37,9 @@ public class Session {
     public boolean isUserLogged() {
         return  httpSession != null && httpSession.getAttribute("dni") != null && httpSession.getAttribute("dni") != "";
     }
+
+    public boolean isUserAPatient() {
+        String role = (String) httpSession.getAttribute("role");
+        return role.equals("PATIENT");
+    }
 }

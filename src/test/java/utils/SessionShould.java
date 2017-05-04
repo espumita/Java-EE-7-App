@@ -96,7 +96,7 @@ public class SessionShould {
 
     @Test
     public void tell_us_if_user_is_logged() throws Exception {
-        Mockito.when(httpSession.getAttribute(any(String.class))).thenReturn("SomeSessionContent");
+        Mockito.when(httpSession.getAttribute(eq("dni"))).thenReturn("SomeSessionContent");
 
         boolean userLogged = session.isUserLogged();
 
@@ -106,12 +106,28 @@ public class SessionShould {
 
     @Test
     public void tell_us_if_user_is_not_logged() throws Exception {
-        Mockito.when(httpSession.getAttribute(any(String.class))).thenReturn("");
+        Mockito.when(httpSession.getAttribute(eq("dni"))).thenReturn("");
 
         boolean userLogged = session.isUserLogged();
 
         assertThat(userLogged, is(false));
     }
 
+    @Test
+    public void tell_us_if_the_user_is_a_patient() throws Exception {
+        Mockito.when(httpSession.getAttribute(eq("role"))).thenReturn("PATIENT");
 
+        boolean isUserAPatient = session.isUserAPatient();
+
+        assertThat(isUserAPatient, is(true));
+    }
+
+    @Test
+    public void tell_us_if_the_user_is_not_a_patient() throws Exception {
+        Mockito.when(httpSession.getAttribute(eq("role"))).thenReturn("DOCTOR");
+
+        boolean isUserAPatient = session.isUserAPatient();
+
+        assertThat(isUserAPatient, is(false));
+    }
 }
