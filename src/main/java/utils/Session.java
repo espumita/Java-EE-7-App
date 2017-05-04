@@ -26,6 +26,8 @@ public class Session {
             throw new BadLoginException();
         }
         httpSession.setAttribute("dni", userCredentials.dni());
+        String role = userRepository.role(userCredentials);
+        httpSession.setAttribute("role", role);
     }
 
     public void logout() {

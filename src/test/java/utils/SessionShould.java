@@ -1,7 +1,7 @@
 package utils;
 
-import infrastructure.UserMemoryRepository;
 import beans.LogBean;
+import infrastructure.UserMemoryRepository;
 import model.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,12 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import static com.googlecode.catchexception.apis.BDDCatchException.caughtException;
 import static com.googlecode.catchexception.apis.BDDCatchException.when;
-import static org.assertj.core.api.Assertions.anyOf;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,21 +28,41 @@ public class SessionShould {
     private HttpSession httpSession;
     private LogBean log;
     private Session session;
+    private static final String A_PATIENT_DNI = "patient";
+    private static final String A_DOCTOR_DNI = "doctor";
 
     @Before
     public void setUp() throws Exception {
-        httpSession = Mockito.mock(HttpSession.class);
-        log = Mockito.mock(LogBean.class);
+        httpSession = mock(HttpSession.class);
+        log = mock(LogBean.class);
         session = new Session(httpSession, log ,  new UserMemoryRepository());
     }
 
     @Test
     public void login_a_user() throws Exception {
-        UserCredentials userCredentials = new UserCredentials("someDni");
+        UserCredentials userCredentials = new UserCredentials(A_PATIENT_DNI);
 
         session.login(userCredentials);
 
-        verify(httpSession).setAttribute(any(String.class), any(User.class));
+        verify(httpSession).setAttribute(eq("dni"), any(User.class));
+    }
+
+    @Test
+    public void set_the_patient_role_when_the_user_logs_as_a_patient() throws Exception {
+        UserCredentials userCredentials = new UserCredentials(A_PATIENT_DNI);
+
+        session.login(userCredentials);
+
+        verify(httpSession).setAttribute(eq("role"), eq("PATIENT"));
+    }
+
+    @Test
+    public void set_the_doctor_role_when_the_user_logs_as_a_doctor() throws Exception {
+        UserCredentials userCredentials = new UserCredentials(A_DOCTOR_DNI);
+
+        session.login(userCredentials);
+
+        verify(httpSession).setAttribute(eq("role"), eq("DOCTOR"));
     }
 
     @Test

@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserRepositoryShould {
 
     private UserRepository userRepository;
-    private static final String SOME_DNI = "someDni";
+    private static final String SOME_DNI = "patient";
 
     @Before
     public void setUp(){
