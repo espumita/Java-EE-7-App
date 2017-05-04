@@ -32,19 +32,19 @@ public class DoctorMemoryRepository implements DoctorRepository {
     @Override
     public Doctor fullLoad(String doctorDni) throws IncompletePatient {
         Doctor doctor = new Doctor(doctorDni, "Jhon Smith");
-        doctor.add(aPatient());
-        doctor.add(aPatient());
-        doctor.add(aPatient());
+        doctor.add(aPatient("45345343A"));
+        doctor.add(aPatient("45345343B"));
+        doctor.add(aPatient("45345343C"));
         return doctor;
     }
 
-    private Patient aPatient() throws IncompletePatient {
+    private Patient aPatient(String dni) throws IncompletePatient {
         return new PatientBuilder()
                 .withGender("Male")
                 .withName("David Jesus")
                 .withAddress("Madrid")
                 .withAge("30")
-                .withDNI("someDni")
+                .withDNI(dni)
                 .withSamplesHistory(Lists.newArrayList(
                         new Sample("100", new Date()),
                         new Sample("80", new Date())

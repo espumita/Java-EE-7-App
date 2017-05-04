@@ -14,7 +14,7 @@
         <c:forEach items="${doctor.patients()}" var="patient">
             <tr>
                 <td class="mine">
-                    <a href="./patient">
+                    <a href="./MyPatient?dni=${patient.dni()}">
                         <img src="images/picture.jpg" style="width: 75px; height: 75px;">
                     </a>
                 </td>
