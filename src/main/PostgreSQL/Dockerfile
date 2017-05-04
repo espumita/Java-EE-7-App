@@ -5,5 +5,7 @@ ENV POSTGRES_USER postgres
 ENV POSTGRES_PASSWORD mysecretpassword
 
 WORKDIR /GlucoseApp
+ADD ./setup.sql .
+
 
 EXPOSE 5432

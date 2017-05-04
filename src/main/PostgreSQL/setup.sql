@@ -1,0 +1,1 @@
+CREATE TABLE example (id SMALLINT NOT NULL);
