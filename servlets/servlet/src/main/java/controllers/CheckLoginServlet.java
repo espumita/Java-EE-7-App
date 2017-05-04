@@ -22,6 +22,11 @@ public class CheckLoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
+        if (session.isUserLogged()){
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
+            return;
+        }
+
         try {
             String dni = request.getParameter("dni");
             session.login(new UserCredentials(dni));
@@ -29,7 +34,12 @@ public class CheckLoginServlet extends HttpServlet {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error"));
             return;
         }
-        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+        
+        if (session.isUserAPatient()){
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+        }else{
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/list"));
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

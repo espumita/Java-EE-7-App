@@ -27,8 +27,7 @@ public class SaveSampleServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
-        if(session.isUserLogged()){
-
+        if(session.isUserLogged() && session.isUserAPatient()){
             String sampleValue = ((String) request.getParameter("sampleValue"));
             String dni = request.getSession().getAttribute("dni").toString();
             PatientMemoryRepository patientRepository = PatientMemoryRepository.getInstance();
@@ -37,8 +36,7 @@ public class SaveSampleServlet extends HttpServlet {
             command.run();
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
         }else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("out.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
         }
     }
 

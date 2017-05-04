@@ -26,12 +26,11 @@ public class UploadServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
-        if(session.isUserLogged()){
+        if(session.isUserLogged() && session.isUserAPatient()){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientUpload.jsp");
             requestDispatcher.forward(request, response);
         }else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("out.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
         }
     }
 

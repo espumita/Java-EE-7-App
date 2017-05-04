@@ -23,7 +23,11 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         if(session.isUserLogged()){
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+            if (session.isUserAPatient()){
+                response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+            }else{
+                response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/list"));
+            }
         }else{
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login.jsp");
             requestDispatcher.forward(request, response);

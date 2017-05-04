@@ -26,7 +26,7 @@ public class PatientDoctorProfileServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
-        if(session.isUserLogged()){
+        if(session.isUserLogged() && session.isUserAPatient()){
             String patientDni = request.getSession().getAttribute("dni").toString();
             DoctorMemoryRepository doctorRepository = new DoctorMemoryRepository();
             CommandLoadPatientDoctor command = new CommandLoadPatientDoctor(doctorRepository, patientDni);
@@ -37,8 +37,7 @@ public class PatientDoctorProfileServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientDoctorProfile.jsp");
             requestDispatcher.forward(request, response);
         }else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("out.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
         }
     }
 
