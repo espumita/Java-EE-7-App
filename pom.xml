@@ -3,48 +3,61 @@
    <groupId>root</groupId>
    <version>1.0</version>
    <dependencies>
+
+       <!--  JPA -->
+       <dependency>
+           <groupId>org.hibernate</groupId>
+           <artifactId>hibernate-entitymanager</artifactId>
+           <version>5.2.10.Final</version>
+       </dependency>
+
+       <dependency>
+           <groupId>postgresql</groupId>
+           <artifactId>postgresql</artifactId>
+           <version>9.1-901-1.jdbc4</version>
+       </dependency>
+
+
       <!-- Testing -->
-      <!-- https://mvnrepository.com/artifact/junit/junit -->
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
          <version>4.12</version>
       </dependency>
 
-      <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
       <dependency>
          <groupId>org.mockito</groupId>
          <artifactId>mockito-all</artifactId>
          <version>1.9.5</version>
       </dependency>
 
-      <!-- https://mvnrepository.com/artifact/eu.codearte.catch-exception/catch-exception -->
       <dependency>
          <groupId>eu.codearte.catch-exception</groupId>
          <artifactId>catch-exception</artifactId>
          <version>1.4.4</version>
       </dependency>
 
-      <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
       <dependency>
          <groupId>org.assertj</groupId>
          <artifactId>assertj-core</artifactId>
          <version>3.6.2</version>
       </dependency>
 
-
-       <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+       <!-- JSP -->
        <dependency>
            <groupId>jstl</groupId>
            <artifactId>jstl</artifactId>
            <version>1.2</version>
        </dependency>
 
-      <dependency>
+       <!-- Java EE -->
+       <dependency>
          <groupId>javax</groupId>
          <artifactId>javaee-api</artifactId>
          <version>7.0</version>
       </dependency>
+
+       
        <dependency>
            <groupId>root.project</groupId>
            <artifactId>ejbs</artifactId>
