@@ -3,6 +3,7 @@ package controllers;
 import actions.CommandLoadPatient;
 import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
+import beans.PatientBeanInterface;
 import infrastructure.DoctorMemoryRepository;
 import infrastructure.PatientMemoryRepository;
 import infrastructure.UserMemoryRepository;
@@ -29,17 +30,21 @@ public class PatientProfileServlet extends HttpServlet {
     @EJB
     LogBeanInterface logBean;
 
+
+    @EJB
+    PatientBeanInterface patientBean;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
         if(session.isUserLogged() && session.isUserAPatient()){
             String dni = request.getSession().getAttribute("dni").toString();
             PatientMemoryRepository patientRepository = PatientMemoryRepository.getInstance();
             CommandLoadPatient patientCommand = new CommandLoadPatient(dni, patientRepository);
-            Patient patient = null;
             try {
-                patient = patientCommand.run();
+                Patient patient = patientCommand.run();
+                patientBean.patient(patient.toProxy());
             } catch (IncompletePatient incompletePatient) { }
-            request.setAttribute("user", patient);
+            request.setAttribute("user", patientBean.patient());
 
             DoctorMemoryRepository doctorRepository = new DoctorMemoryRepository();
             CommandLoadPatientDoctor doctorCommand = new CommandLoadPatientDoctor(doctorRepository, dni);

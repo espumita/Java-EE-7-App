@@ -1,20 +1,17 @@
-package model;
-
-import proxy.PatientProxy;
+package proxy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Patient implements User {
-
+public class PatientProxy {
     private String name;
     private String gender;
     private String address;
     private String age;
     private String dni;
-    private List<Sample> samplesHistory = new ArrayList<>();
+    private List<SampleProxy> samplesHistory = new ArrayList<>();
 
-    public Patient(String name, String gender, String address, String age, String dni, ArrayList samplesHistory) {
+    public PatientProxy(String name, String gender, String address, String age, String dni, ArrayList samplesHistory) {
         this.name = name;
         this.gender = gender;
         this.address = address;
@@ -43,16 +40,11 @@ public class Patient implements User {
         return age;
     }
 
-    public void add(Sample sample) {
+    public void add(SampleProxy sample) {
         samplesHistory.add(sample);
     }
 
-    public ArrayList<Sample> sampleHistory() {
-        return (ArrayList<Sample>) samplesHistory;
+    public ArrayList<SampleProxy> sampleHistory() {
+        return (ArrayList<SampleProxy>) samplesHistory;
     }
-
-    public PatientProxy toProxy() {
-        return new PatientProxy(name, gender, address, age, dni, sampleHistory());
-    }
-
 }

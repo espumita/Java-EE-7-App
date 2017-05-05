@@ -26,7 +26,7 @@ public class LogBean implements LogBeanInterface{
                 new File("/home/david/bad-login-log.txt"), true ))).logException(name);
     }
 
-    @Schedule(second = "59", minute = "59", hour = "23")
+    //@Schedule(second = "59", minute = "59", hour = "23")
     @Lock
     public void logReport(String number) throws  Exception {
         new Log(new PrintWriter(new FileOutputStream(
