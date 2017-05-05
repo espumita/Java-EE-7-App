@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPLOY_CONFIG_PATH=~/IdeaProjects/medical-app-java-ee/src/main/PostgreSQL
+DEPLOY_CONFIG_PATH=~/IdeaProjects/Java-EE-7-App/src/main/PostgreSQL
 docker stop postgres-cont
 docker rm postgres-cont
 docker rmi postgres-img
