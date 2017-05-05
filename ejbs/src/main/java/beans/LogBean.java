@@ -22,6 +22,6 @@ public class LogBean implements LogBeanInterface{
     @Lock(LockType.WRITE)
     public void log(String name) throws Exception {
         new Log(new PrintWriter(new FileOutputStream(
-                new File("/home/david/bad-login-log.txt"), true ))).log(name);
+                new File("/home/david/bad-login-log.txt"), true ))).logException(name);
     }
 }

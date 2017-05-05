@@ -25,7 +25,17 @@ public class LogShould {
     public void persist_the_bad_login() throws Exception {
         Log log = new Log(writer);
 
-        log.log("someName");
+        log.logException("someName");
+
+        verify(writer).append(any(String.class));
+        verify(writer).close();
+    }
+
+    @Test
+    public void persist_a_sample_report() throws Exception {
+        Log log = new Log(writer);
+
+        log.logReport("someNumber");
 
         verify(writer).append(any(String.class));
         verify(writer).close();
