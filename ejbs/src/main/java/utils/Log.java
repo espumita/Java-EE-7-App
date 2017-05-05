@@ -20,7 +20,7 @@ public class Log {
         }
     }
 
-    public void logReport(String number) {
+    public void logReport(int number) {
         try{
             writer.append("Number of samples uploaded this week: " + number + "\n");
             writer.close();

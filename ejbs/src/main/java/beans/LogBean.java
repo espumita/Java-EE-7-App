@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 
 @Singleton(name = "LogEJB")
 public class LogBean implements LogBeanInterface{
+    private int number;
 
     @PostConstruct
     public void init() {
@@ -26,10 +27,17 @@ public class LogBean implements LogBeanInterface{
                 new File("/home/david/bad-login-log.txt"), true ))).logException(name);
     }
 
-    //@Schedule(second = "59", minute = "59", hour = "23")
+    @Schedule(second = "59", minute = "59", hour = "23")
     @Lock
-    public void logReport(String number) throws  Exception {
+    public void logReport() throws  Exception {
         new Log(new PrintWriter(new FileOutputStream(
-                new File("/home/david/report-log.txt"), true ))).logException(number);
+                new File("/home/david/report-log.txt"), true ))).logReport(number);
     }
+
+    @Override
+    public void incrementSampleNumber() {
+        number++;
+    }
+
+
 }

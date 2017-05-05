@@ -35,7 +35,7 @@ public class LogShould {
     public void persist_a_sample_report() throws Exception {
         Log log = new Log(writer);
 
-        log.logReport("someNumber");
+        log.logReport(2000);
 
         verify(writer).append(any(String.class));
         verify(writer).close();
