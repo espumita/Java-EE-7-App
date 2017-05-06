@@ -1,5 +1,6 @@
-package infrastructure;
+package infrastructure.repositories.memory;
 
+import infrastructure.repositories.DoctorRepository;
 import model.Doctor;
 import model.Patient;
 import model.PatientBuilder;

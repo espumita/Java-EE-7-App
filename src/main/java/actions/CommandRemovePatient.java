@@ -1,6 +1,6 @@
 package actions;
 
-import infrastructure.DoctorRepository;
+import infrastructure.repositories.DoctorRepository;
 
 public class CommandRemovePatient implements Command{
     private final String dni;

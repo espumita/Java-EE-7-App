@@ -1,4 +1,4 @@
-package infrastructure.postgresSQL;
+package infrastructure.postgresEntyties;
 
 import javax.persistence.*;
 

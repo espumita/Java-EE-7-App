@@ -1,6 +1,6 @@
 package actions;
 
-import infrastructure.DoctorRepository;
+import infrastructure.repositories.DoctorRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

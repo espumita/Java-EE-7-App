@@ -1,5 +1,6 @@
-package infrastructure;
+package infrastructure.repositories.memory;
 
+import infrastructure.repositories.PatientRepository;
 import model.Patient;
 import model.PatientBuilder;
 import model.Sample;
@@ -9,7 +10,7 @@ import org.assertj.core.util.Lists;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PatientMemoryRepository implements PatientRepository{
+public class PatientMemoryRepository implements PatientRepository {
 
     private static PatientMemoryRepository instance = null;
     private ArrayList<Sample> sampleList = Lists.newArrayList(

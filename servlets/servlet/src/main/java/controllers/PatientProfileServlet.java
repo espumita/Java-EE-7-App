@@ -4,12 +4,11 @@ import actions.CommandLoadPatient;
 import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
 import beans.PatientBeanInterface;
-import infrastructure.DoctorMemoryRepository;
-import infrastructure.PatientMemoryRepository;
-import infrastructure.UserMemoryRepository;
+import infrastructure.repositories.memory.DoctorMemoryRepository;
+import infrastructure.repositories.memory.PatientMemoryRepository;
+import infrastructure.repositories.memory.UserMemoryRepository;
 import model.Doctor;
 import model.Patient;
-import model.Sample;
 import model.exceptions.IncompletePatient;
 import utils.Session;
 
@@ -21,7 +20,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 
 @WebServlet(name = "PatientProfileServlet", urlPatterns = "/patient")

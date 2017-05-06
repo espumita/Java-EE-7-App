@@ -1,5 +1,7 @@
-package infrastructure;
+package infrastructure.repositories.memory;
 
+import infrastructure.repositories.memory.UserMemoryRepository;
+import infrastructure.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import utils.UserCredentials;
@@ -7,7 +9,7 @@ import utils.UserCredentials;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class UserRepositoryShould {
+public class UserMemoryRepositoryShould {
 
     private UserRepository userRepository;
     private static final String SOME_DNI = "patient";

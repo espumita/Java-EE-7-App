@@ -1,4 +1,4 @@
-package infrastructure;
+package infrastructure.repositories;
 
 import model.Doctor;
 import model.Patient;

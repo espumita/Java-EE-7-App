@@ -1,12 +1,10 @@
 package controllers;
 
-import actions.CommandLoadDoctor;
 import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
-import infrastructure.DoctorMemoryRepository;
-import infrastructure.UserMemoryRepository;
+import infrastructure.repositories.memory.DoctorMemoryRepository;
+import infrastructure.repositories.memory.UserMemoryRepository;
 import model.Doctor;
-import model.exceptions.IncompletePatient;
 import utils.Session;
 
 import javax.ejb.EJB;

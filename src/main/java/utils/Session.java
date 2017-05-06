@@ -1,9 +1,7 @@
 package utils;
 
-import actions.CommandLoadPatient;
-import infrastructure.UserRepository;
+import infrastructure.repositories.UserRepository;
 import beans.LogBeanInterface;
-import model.User;
 import utils.exceptions.BadLoginException;
 
 import javax.servlet.http.HttpSession;

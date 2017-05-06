@@ -1,9 +1,8 @@
 package controllers;
 
-import infrastructure.UserMemoryRepository;
+import infrastructure.repositories.memory.UserMemoryRepository;
 import beans.LogBeanInterface;
 import utils.Session;
-import utils.UserCredentials;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;

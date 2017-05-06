@@ -2,14 +2,12 @@ package controllers;
 
 import actions.CommandAddSample;
 import beans.LogBeanInterface;
-import infrastructure.PatientMemoryRepository;
-import infrastructure.PatientRepository;
-import infrastructure.UserMemoryRepository;
+import infrastructure.repositories.memory.PatientMemoryRepository;
+import infrastructure.repositories.memory.UserMemoryRepository;
 import model.Sample;
 import utils.Session;
 
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

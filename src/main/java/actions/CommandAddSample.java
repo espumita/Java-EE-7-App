@@ -1,7 +1,6 @@
 package actions;
 
-import infrastructure.PatientMemoryRepository;
-import infrastructure.PatientRepository;
+import infrastructure.repositories.PatientRepository;
 import model.Sample;
 
 public class CommandAddSample  implements  Command{

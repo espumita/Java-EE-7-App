@@ -1,6 +1,6 @@
 package actions;
 
-import infrastructure.DoctorRepository;
+import infrastructure.repositories.DoctorRepository;
 import model.Patient;
 import model.PatientBuilder;
 import model.Sample;

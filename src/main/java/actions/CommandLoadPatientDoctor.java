@@ -1,6 +1,6 @@
 package actions;
 
-import infrastructure.DoctorRepository;
+import infrastructure.repositories.DoctorRepository;
 import model.Doctor;
 
 public class CommandLoadPatientDoctor implements Command {

@@ -1,11 +1,10 @@
 package actions;
 
-import infrastructure.PatientRepository;
+import infrastructure.repositories.PatientRepository;
 import model.Sample;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Date;

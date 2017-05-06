@@ -1,7 +1,7 @@
 package utils;
 
 import beans.LogBean;
-import infrastructure.UserMemoryRepository;
+import infrastructure.repositories.memory.UserMemoryRepository;
 import model.User;
 import org.junit.Before;
 import org.junit.Test;

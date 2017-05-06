@@ -1,5 +1,6 @@
-package infrastructure;
+package infrastructure.repositories.memory;
 
+import infrastructure.repositories.UserRepository;
 import utils.UserCredentials;
 
 public class UserMemoryRepository implements UserRepository {

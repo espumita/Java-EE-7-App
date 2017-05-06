@@ -1,6 +1,6 @@
 package actions;
 
-import infrastructure.PatientRepository;
+import infrastructure.repositories.PatientRepository;
 import model.Patient;
 import model.exceptions.IncompletePatient;
 
