@@ -1,13 +1,13 @@
 package infrastructure.repositories.postgres;
 
+import infrastructure.postgresEntyties.DoctorsEntity;
 import infrastructure.postgresEntyties.PatientsEntity;
 import infrastructure.repositories.UserRepository;
-import utils.PostgresConnectionProvider;
 import utils.UserCredentials;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class UserPostgresRepository implements UserRepository {
 
@@ -16,10 +16,16 @@ public class UserPostgresRepository implements UserRepository {
         try {
             EntityManagerFactory factory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
             EntityManager entityManager = factory.createEntityManager();
+
             PatientsEntity patientsEntity = entityManager.find(PatientsEntity.class, userCredentials.dni());
             if(patientsEntity != null) return true;
+
+
+            DoctorsEntity doctorsEntity = entityManager.find(DoctorsEntity.class, userCredentials.dni());
+            if(doctorsEntity != null) return true;
+
+            entityManager.close();
         }catch (Exception e){
-            e.printStackTrace();
             return false;
         }
         return false;

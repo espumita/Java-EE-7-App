@@ -1,6 +1,5 @@
 package infrastructure.repositories.memory;
 
-import infrastructure.repositories.memory.UserMemoryRepository;
 import infrastructure.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
