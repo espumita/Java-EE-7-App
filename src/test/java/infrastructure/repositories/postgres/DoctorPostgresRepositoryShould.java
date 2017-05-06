@@ -4,12 +4,15 @@ import model.Doctor;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class DoctorPostgresRepositoryShould {
 
     private DoctorPostgresRepository doctorRepository;
     private String SOME_PATIENT_DNI = "patient";
+    private String SOME_DOCTOR_DNI = "doctor";
 
 
     @Before
@@ -31,7 +34,15 @@ public class DoctorPostgresRepositoryShould {
         Doctor doctor = doctorRepository.simpleLoad("otherDni");
 
         assertTrue(doctor instanceof Doctor.NotAssignedDoctor);
+    }
 
+
+    @Test
+    public void full_load_a_doctor() throws Exception {
+
+        Doctor doctor = doctorRepository.fullLoad(SOME_DOCTOR_DNI);
+
+        assertThat(doctor.patients().size(), is(2));
     }
 }
 
