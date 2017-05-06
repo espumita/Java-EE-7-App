@@ -24,5 +24,14 @@ public class DoctorPostgresRepositoryShould {
 
         assertTrue(doctor instanceof Doctor);
     }
+
+    @Test
+    public void load_a_not_assigned_doctor_when_the_patient_has_no_doctor() throws Exception {
+
+        Doctor doctor = doctorRepository.simpleLoad("otherDni");
+
+        assertTrue(doctor instanceof Doctor.NotAssignedDoctor);
+
+    }
 }
 

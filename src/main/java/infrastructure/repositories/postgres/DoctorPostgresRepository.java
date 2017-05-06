@@ -43,7 +43,7 @@ public class DoctorPostgresRepository implements DoctorRepository {
         } catch (Exception e){
             throw e;
         }
-        return null;
+        return new Doctor.NotAssignedDoctor();
     }
 
     @Override
