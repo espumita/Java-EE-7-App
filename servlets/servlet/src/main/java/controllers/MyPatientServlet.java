@@ -3,7 +3,7 @@ package controllers;
 import actions.CommandLoadPatient;
 import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
-import infrastructure.repositories.memory.DoctorMemoryRepository;
+import infrastructure.repositories.postgres.DoctorPostgresRepository;
 import infrastructure.repositories.postgres.PatientPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
 import model.Doctor;
@@ -38,7 +38,8 @@ public class MyPatientServlet extends HttpServlet {
             } catch (IncompletePatient incompletePatient) { }
             request.setAttribute("patient", patient);
 
-            CommandLoadPatientDoctor commandLoadPatientDoctor = new CommandLoadPatientDoctor(new DoctorMemoryRepository(), patientDni);
+            DoctorPostgresRepository doctorRepository = new DoctorPostgresRepository();
+            CommandLoadPatientDoctor commandLoadPatientDoctor = new CommandLoadPatientDoctor(doctorRepository, patientDni);
             Doctor doctor = commandLoadPatientDoctor.run();
             request.setAttribute("doctor", doctor);
 

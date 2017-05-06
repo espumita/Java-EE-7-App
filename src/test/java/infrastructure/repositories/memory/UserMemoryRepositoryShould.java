@@ -1,6 +1,7 @@
 package infrastructure.repositories.memory;
 
 import infrastructure.repositories.UserRepository;
+import infrastructure.repositories.postgres.UserPostgresRepositoryShould;
 import org.junit.Before;
 import org.junit.Test;
 import utils.UserCredentials;
@@ -8,7 +9,12 @@ import utils.UserCredentials;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
+/**
+ * Now we use postgres repositories
+ *
+ * @deprecated use {@link UserPostgresRepositoryShould} instead.
+ */
+@Deprecated
 public class UserMemoryRepositoryShould {
 
     private UserRepository userRepository;

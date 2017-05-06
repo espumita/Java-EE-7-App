@@ -1,6 +1,7 @@
 package infrastructure.repositories.memory;
 
 import infrastructure.repositories.DoctorRepository;
+import infrastructure.repositories.postgres.DoctorPostgresRepositoryShould;
 import model.Doctor;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Now we use postgres repositories
+ *
+ * @deprecated use {@link DoctorPostgresRepositoryShould} instead.
+ */
+@Deprecated
 public class DoctorMemoryRepositoryShould {
 
     private DoctorRepository doctorRepository;

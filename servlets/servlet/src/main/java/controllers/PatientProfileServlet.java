@@ -4,7 +4,7 @@ import actions.CommandLoadPatient;
 import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
 import beans.PatientBeanInterface;
-import infrastructure.repositories.memory.DoctorMemoryRepository;
+import infrastructure.repositories.postgres.DoctorPostgresRepository;
 import infrastructure.repositories.postgres.PatientPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
 import model.Doctor;
@@ -44,7 +44,7 @@ public class PatientProfileServlet extends HttpServlet {
             } catch (IncompletePatient incompletePatient) { }
             request.setAttribute("user", patientBean.patient());
 
-            DoctorMemoryRepository doctorRepository = new DoctorMemoryRepository();
+            DoctorPostgresRepository doctorRepository = new DoctorPostgresRepository();
             CommandLoadPatientDoctor doctorCommand = new CommandLoadPatientDoctor(doctorRepository, dni);
             Doctor doctor = doctorCommand.run();
             request.setAttribute("doctor", doctor);

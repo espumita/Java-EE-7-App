@@ -1,6 +1,7 @@
 package infrastructure.repositories.memory;
 
 import infrastructure.repositories.DoctorRepository;
+import infrastructure.repositories.postgres.DoctorPostgresRepository;
 import model.Doctor;
 import model.Patient;
 import model.PatientBuilder;

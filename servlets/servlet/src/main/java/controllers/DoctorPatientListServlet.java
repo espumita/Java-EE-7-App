@@ -2,7 +2,7 @@ package controllers;
 
 import actions.CommandLoadDoctor;
 import beans.LogBeanInterface;
-import infrastructure.repositories.memory.DoctorMemoryRepository;
+import infrastructure.repositories.postgres.DoctorPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
 import model.Doctor;
 import model.exceptions.IncompletePatient;
@@ -27,7 +27,8 @@ public class DoctorPatientListServlet extends HttpServlet {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && !session.isUserAPatient()){
             String dni = request.getSession().getAttribute("dni").toString();
-            CommandLoadDoctor command = new CommandLoadDoctor(new DoctorMemoryRepository(), dni);
+            DoctorPostgresRepository doctorRepository = new DoctorPostgresRepository();
+            CommandLoadDoctor command = new CommandLoadDoctor(doctorRepository, dni);
             Doctor doctor = null;
             try {
                 doctor = command.run();

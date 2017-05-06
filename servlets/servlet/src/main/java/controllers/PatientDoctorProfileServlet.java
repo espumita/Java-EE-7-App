@@ -2,7 +2,7 @@ package controllers;
 
 import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
-import infrastructure.repositories.memory.DoctorMemoryRepository;
+import infrastructure.repositories.postgres.DoctorPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
 import model.Doctor;
 import utils.Session;
@@ -26,7 +26,7 @@ public class PatientDoctorProfileServlet extends HttpServlet {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && session.isUserAPatient()){
             String patientDni = request.getSession().getAttribute("dni").toString();
-            DoctorMemoryRepository doctorRepository = new DoctorMemoryRepository();
+            DoctorPostgresRepository doctorRepository = new DoctorPostgresRepository();
             CommandLoadPatientDoctor command = new CommandLoadPatientDoctor(doctorRepository, patientDni);
             Doctor doctor = command.run();
 
