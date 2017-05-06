@@ -55,7 +55,7 @@
                             <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="profile-tab">
 
                                 <!-- start samples history -->
-                                <jsp:include page="../patient/patient-samples-history.jsp"/>
+                                <jsp:include page="doctor-patient-samples-history.jsp"/>
                                 <!-- end samples history -->
 
                             </div>
