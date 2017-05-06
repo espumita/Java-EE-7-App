@@ -16,7 +16,7 @@ public class CommandAddSample  implements  Command{
     }
 
 
-    public void run() {
+    public void run() throws Exception {
         patientRepository.addSample(sample, dni);
     }
 }

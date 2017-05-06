@@ -29,9 +29,11 @@ public class SaveSampleServlet extends HttpServlet {
             String sampleValue = ((String) request.getParameter("sampleValue"));
             String dni = request.getSession().getAttribute("dni").toString();
             PatientMemoryRepository patientRepository = PatientMemoryRepository.getInstance();
-            Sample sample = new Sample(sampleValue, new Date());
+            Sample sample = new Sample(sampleValue, new Date().toString());
             CommandAddSample command = new CommandAddSample(sample, patientRepository, dni);
-            command.run();
+            try {
+                command.run();
+            } catch (Exception e) { }
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
         }else {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));

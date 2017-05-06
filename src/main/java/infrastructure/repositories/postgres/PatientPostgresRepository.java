@@ -25,8 +25,24 @@ public class PatientPostgresRepository implements PatientRepository{
     }
 
     @Override
-    public void addSample(Sample sample, String dni) {
+    public void addSample(Sample sample, String dni) throws Exception{
+        try{
+            EntityManager entityManager = factory.createEntityManager();
 
+            entityManager.getTransaction().begin();
+
+            SamplesEntity samplesEntity = new SamplesEntity();
+            samplesEntity.setId((int)(Math.random()*90000)+10000);
+            samplesEntity.setPatientdni(dni);
+            samplesEntity.setGlucoselevel(Integer.parseInt(sample.glucoseLevel()));
+            samplesEntity.setDate(sample.date());
+
+            entityManager.persist(samplesEntity);
+
+            entityManager.getTransaction().commit();
+        } catch (Exception e){
+            throw e;
+        }
     }
 
     @Override
