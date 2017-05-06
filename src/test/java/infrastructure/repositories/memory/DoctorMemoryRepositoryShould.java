@@ -1,15 +1,14 @@
 package infrastructure.repositories.memory;
 
-import infrastructure.repositories.memory.DoctorMemoryRepository;
 import infrastructure.repositories.DoctorRepository;
 import model.Doctor;
 import org.junit.Before;
 import org.junit.Test;
 
-import static model.Doctor.*;
-import static org.junit.Assert.assertTrue;
+import static model.Doctor.NotAssignedDoctor;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class DoctorMemoryRepositoryShould {
 

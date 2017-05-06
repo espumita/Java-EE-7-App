@@ -32,7 +32,22 @@ public class UserPostgresRepository implements UserRepository {
     }
 
     @Override
-    public String role(UserCredentials userCredentials) {
-        return null;
+    public String role(UserCredentials userCredentials) throws Exception {
+        try {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+            EntityManager entityManager = factory.createEntityManager();
+
+            PatientsEntity patientsEntity = entityManager.find(PatientsEntity.class, userCredentials.dni());
+            if(patientsEntity != null) return "PATIENT";
+
+
+            DoctorsEntity doctorsEntity = entityManager.find(DoctorsEntity.class, userCredentials.dni());
+            if(doctorsEntity != null) return "DOCTOR";
+
+            entityManager.close();
+        }catch (Exception e){
+            throw e;
+        }
+        throw new Exception("User do not exists");
     }
 }

@@ -15,7 +15,7 @@ public class UserMemoryRepository implements UserRepository {
     }
 
     @Override
-    public String role(UserCredentials userCredentials) {
+    public String role(UserCredentials userCredentials) throws Exception{
         return userCredentials.dni().equals(DOCTOR_DNI) ? "DOCTOR" : "PATIENT";
     }
 
