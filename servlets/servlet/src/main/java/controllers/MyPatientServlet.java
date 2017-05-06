@@ -5,7 +5,7 @@ import actions.CommandLoadPatientDoctor;
 import beans.LogBeanInterface;
 import infrastructure.repositories.memory.DoctorMemoryRepository;
 import infrastructure.repositories.memory.PatientMemoryRepository;
-import infrastructure.repositories.memory.UserMemoryRepository;
+import infrastructure.repositories.postgres.UserPostgresRepository;
 import model.Doctor;
 import model.Patient;
 import model.exceptions.IncompletePatient;
@@ -27,7 +27,7 @@ public class MyPatientServlet extends HttpServlet {
     LogBeanInterface logBean;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
+        Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && !session.isUserAPatient()){
             String patientDni = request.getParameter("dni");
             PatientMemoryRepository patientRepository = PatientMemoryRepository.getInstance();

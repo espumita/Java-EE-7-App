@@ -1,7 +1,7 @@
 package controllers;
 
 import beans.LogBeanInterface;
-import infrastructure.repositories.memory.UserMemoryRepository;
+import infrastructure.repositories.postgres.UserPostgresRepository;
 import utils.Session;
 
 import javax.ejb.EJB;
@@ -21,7 +21,7 @@ public class UploadServlet extends HttpServlet {
     LogBeanInterface logBean;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
+        Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && session.isUserAPatient()){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientUpload.jsp");
             requestDispatcher.forward(request, response);

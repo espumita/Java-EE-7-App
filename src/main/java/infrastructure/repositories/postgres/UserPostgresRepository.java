@@ -11,18 +11,29 @@ import javax.persistence.Persistence;
 
 public class UserPostgresRepository implements UserRepository {
 
+    private EntityManagerFactory factory;
+
+    public UserPostgresRepository() {
+        this.factory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+    }
+
     @Override
     public boolean exist(UserCredentials userCredentials) {
         try {
-            EntityManagerFactory factory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
             EntityManager entityManager = factory.createEntityManager();
 
             PatientsEntity patientsEntity = entityManager.find(PatientsEntity.class, userCredentials.dni());
-            if(patientsEntity != null) return true;
+            if(patientsEntity != null) {
+                entityManager.close();
+                return true;
+            };
 
 
             DoctorsEntity doctorsEntity = entityManager.find(DoctorsEntity.class, userCredentials.dni());
-            if(doctorsEntity != null) return true;
+            if(doctorsEntity != null){
+                entityManager.close();
+                return true;
+            }
 
             entityManager.close();
         }catch (Exception e){
@@ -34,15 +45,20 @@ public class UserPostgresRepository implements UserRepository {
     @Override
     public String role(UserCredentials userCredentials) throws Exception {
         try {
-            EntityManagerFactory factory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
             EntityManager entityManager = factory.createEntityManager();
 
             PatientsEntity patientsEntity = entityManager.find(PatientsEntity.class, userCredentials.dni());
-            if(patientsEntity != null) return "PATIENT";
+            if(patientsEntity != null){
+                entityManager.close();
+                return "PATIENT";
+            }
 
 
             DoctorsEntity doctorsEntity = entityManager.find(DoctorsEntity.class, userCredentials.dni());
-            if(doctorsEntity != null) return "DOCTOR";
+            if(doctorsEntity != null){
+                entityManager.close();
+                return "DOCTOR";
+            }
 
             entityManager.close();
         }catch (Exception e){

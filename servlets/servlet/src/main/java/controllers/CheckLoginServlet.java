@@ -1,7 +1,7 @@
 package controllers;
 
 import beans.LogBeanInterface;
-import infrastructure.repositories.memory.UserMemoryRepository;
+import infrastructure.repositories.postgres.UserPostgresRepository;
 import utils.Session;
 import utils.UserCredentials;
 
@@ -21,7 +21,7 @@ public class CheckLoginServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
+        Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if (session.isUserLogged()){
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
             return;

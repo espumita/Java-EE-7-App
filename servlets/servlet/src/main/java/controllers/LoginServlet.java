@@ -1,7 +1,7 @@
 package controllers;
 
-import infrastructure.repositories.memory.UserMemoryRepository;
 import beans.LogBeanInterface;
+import infrastructure.repositories.postgres.UserPostgresRepository;
 import utils.Session;
 
 import javax.ejb.EJB;
@@ -20,7 +20,8 @@ public class LoginServlet extends HttpServlet {
     LogBeanInterface logBean;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
+        UserPostgresRepository userRepository = new UserPostgresRepository();
+        Session session = new Session(request.getSession(), logBean, userRepository);
         if(session.isUserLogged()){
             if (session.isUserAPatient()){
                 response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));

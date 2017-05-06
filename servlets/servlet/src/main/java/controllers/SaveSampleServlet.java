@@ -3,7 +3,7 @@ package controllers;
 import actions.CommandAddSample;
 import beans.LogBeanInterface;
 import infrastructure.repositories.memory.PatientMemoryRepository;
-import infrastructure.repositories.memory.UserMemoryRepository;
+import infrastructure.repositories.postgres.UserPostgresRepository;
 import model.Sample;
 import utils.Session;
 
@@ -24,7 +24,7 @@ public class SaveSampleServlet extends HttpServlet {
     LogBeanInterface logBean;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
+        Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && session.isUserAPatient()){
             String sampleValue = ((String) request.getParameter("sampleValue"));
             String dni = request.getSession().getAttribute("dni").toString();

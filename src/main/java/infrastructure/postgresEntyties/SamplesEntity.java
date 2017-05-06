@@ -5,18 +5,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "samples", schema = "public", catalog = "GlucoseAppDB")
 public class SamplesEntity {
-    private int id;
+    private long id;
     private String patientdni;
     private int glucoselevel;
     private String date;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -67,7 +67,7 @@ public class SamplesEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (patientdni != null ? patientdni.hashCode() : 0);
         result = 31 * result + glucoselevel;
         result = 31 * result + (date != null ? date.hashCode() : 0);

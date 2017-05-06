@@ -1,9 +1,8 @@
 package controllers;
 
-import infrastructure.repositories.memory.UserMemoryRepository;
 import beans.LogBeanInterface;
+import infrastructure.repositories.postgres.UserPostgresRepository;
 import utils.Session;
-
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
     LogBeanInterface logBean;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Session session = new Session(request.getSession(), logBean, new UserMemoryRepository());
+        Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged()) session.logout();
         response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
     }
