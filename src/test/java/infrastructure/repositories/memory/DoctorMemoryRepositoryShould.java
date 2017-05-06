@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class DoctorMemoryRepositoryShould {
 
     private DoctorRepository doctorRepository;
-    private static final String SOME_DNI = "patient";
+    private static final String SOME_PATIENT_DNI = "patient";
 
     @Before
     public void setUp(){
@@ -23,7 +23,7 @@ public class DoctorMemoryRepositoryShould {
     @Test
     public void load_a_doctor_when_the_patient_has_a_doctor() throws Exception {
 
-        Doctor doctor = doctorRepository.simpleLoad(SOME_DNI);
+        Doctor doctor = doctorRepository.simpleLoad(SOME_PATIENT_DNI);
 
         assertTrue(doctor instanceof Doctor);
     }
