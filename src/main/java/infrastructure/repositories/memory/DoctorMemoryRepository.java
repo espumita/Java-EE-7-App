@@ -11,7 +11,12 @@ import org.assertj.core.util.Lists;
 import java.util.Date;
 
 import static model.Doctor.*;
-
+/**
+ * Now we use postgres repositories
+ *
+ * @deprecated use {@link DoctorPostgresRepository} instead.
+ */
+@Deprecated
 public class DoctorMemoryRepository implements DoctorRepository {
     @Override
     public void addPatient(Patient patient, String id) {

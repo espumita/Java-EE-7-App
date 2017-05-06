@@ -8,7 +8,7 @@ import utils.UserCredentials;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@Deprecated
+
 public class UserMemoryRepositoryShould {
 
     private UserRepository userRepository;

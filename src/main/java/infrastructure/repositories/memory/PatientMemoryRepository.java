@@ -10,6 +10,12 @@ import org.assertj.core.util.Lists;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Now we use postgres repositories
+ *
+ * @deprecated use {@link PatientPostgresRepository} instead.
+ */
+@Deprecated
 public class PatientMemoryRepository implements PatientRepository {
 
     private static PatientMemoryRepository instance = null;

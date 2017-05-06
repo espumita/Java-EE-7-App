@@ -1,8 +1,15 @@
 package infrastructure.repositories.memory;
 
 import infrastructure.repositories.UserRepository;
+import infrastructure.repositories.postgres.UserPostgresRepository;
 import utils.UserCredentials;
 
+/**
+ * Now we use postgres repositories
+ *
+ * @deprecated use {@link UserPostgresRepository} instead.
+ */
+@Deprecated
 public class UserMemoryRepository implements UserRepository {
 
     private static final String PATIENT_DNI = "patient";
