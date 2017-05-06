@@ -23,7 +23,7 @@ public class DoctorShould {
                 .withAge("someAge")
                 .withDNI("someDNI")
                 .withSamplesHistory(Lists.newArrayList(
-                        new Sample("someGlucoseLevel", new Date())))
+                        new Sample("someGlucoseLevel", new Date().toString())))
                 .build();
     }
 

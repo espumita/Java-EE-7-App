@@ -1,12 +1,10 @@
 package model;
 
-import java.util.Date;
-
 public class Sample {
     private final String glucoseLevel;
-    private final Date date;
+    private final String date;
 
-    public Sample(String glucoseLevel, Date date) {
+    public Sample(String glucoseLevel, String date) {
         this.glucoseLevel = glucoseLevel;
         this.date = date;
     }
@@ -15,7 +13,7 @@ public class Sample {
         return glucoseLevel;
     }
 
-    public Date date() {
+    public String date() {
         return date;
     }
 }

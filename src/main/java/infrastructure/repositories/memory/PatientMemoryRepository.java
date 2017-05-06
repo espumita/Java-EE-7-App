@@ -1,6 +1,7 @@
 package infrastructure.repositories.memory;
 
 import infrastructure.repositories.PatientRepository;
+import infrastructure.repositories.postgres.PatientPostgresRepository;
 import model.Patient;
 import model.PatientBuilder;
 import model.Sample;
@@ -20,8 +21,8 @@ public class PatientMemoryRepository implements PatientRepository {
 
     private static PatientMemoryRepository instance = null;
     private ArrayList<Sample> sampleList = Lists.newArrayList(
-            new Sample("100", new Date()),
-            new Sample("80", new Date())
+            new Sample("100", new Date().toString()),
+            new Sample("80", new Date().toString())
     );
 
     public static PatientMemoryRepository getInstance(){

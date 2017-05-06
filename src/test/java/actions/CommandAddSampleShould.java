@@ -25,7 +25,7 @@ public class CommandAddSampleShould {
 
     @Test
     public void persist_the_sample() throws Exception {
-        Sample sample = new Sample("someLevel", new Date());
+        Sample sample = new Sample("someLevel", new Date().toString());
         CommandAddSample commandAddSample = new CommandAddSample(sample, patientRepository ,"someDNI");
 
         commandAddSample.run();

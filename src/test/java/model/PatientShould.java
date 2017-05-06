@@ -33,7 +33,7 @@ public class PatientShould {
     @Test
     public void should_not_trow_an_exception_if_patient_is_complete() throws Exception, IncompletePatient {
         ArrayList<Sample> sampleList = Lists.newArrayList(
-                new Sample("someGlucoseLevel", new Date())
+                new Sample("someGlucoseLevel", new Date().toString())
         );
         PatientBuilder patientBuilder = new PatientBuilder()
                 .withGender("Male")
@@ -59,7 +59,7 @@ public class PatientShould {
                 .withDNI("someDNI")
                 .withSamplesHistory(new ArrayList<>())
                 .build();
-        Date now = new Date();
+        String now = new Date().toString();
 
         patient.add(new Sample("SomeGlucoseLevel", now));
 
