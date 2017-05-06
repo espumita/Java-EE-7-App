@@ -2,7 +2,7 @@ package controllers;
 
 import actions.CommandAddSample;
 import beans.LogBeanInterface;
-import infrastructure.repositories.memory.PatientMemoryRepository;
+import infrastructure.repositories.postgres.PatientPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
 import model.Sample;
 import utils.Session;
@@ -28,8 +28,7 @@ public class SaveSampleServlet extends HttpServlet {
         if(session.isUserLogged() && session.isUserAPatient()){
             String sampleValue = ((String) request.getParameter("sampleValue"));
             String dni = request.getSession().getAttribute("dni").toString();
-            PatientMemoryRepository patientRepository = PatientMemoryRepository.getInstance();
-            Sample sample = new Sample(sampleValue, new Date().toString());
+            PatientPostgresRepository patientRepository = new PatientPostgresRepository();            Sample sample = new Sample(sampleValue, new Date().toString());
             CommandAddSample command = new CommandAddSample(sample, patientRepository, dni);
             try {
                 command.run();
