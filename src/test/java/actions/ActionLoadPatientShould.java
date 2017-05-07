@@ -10,7 +10,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommandLoadPatientShould {
+public class ActionLoadPatientShould {
 
     private PatientRepository patientRepository;
 
@@ -21,9 +21,9 @@ public class CommandLoadPatientShould {
 
     @Test
     public void load_a_patient() throws Exception {
-        CommandLoadPatient commandLoadPatient = new CommandLoadPatient("someDni", patientRepository);
+        ActionLoadPatient actionLoadPatient = new ActionLoadPatient("someDni", patientRepository);
 
-        commandLoadPatient.run();
+        actionLoadPatient.run();
 
         verify(patientRepository).load(eq("someDni"));
     }

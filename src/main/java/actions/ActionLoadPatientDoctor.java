@@ -3,12 +3,12 @@ package actions;
 import infrastructure.repositories.DoctorRepository;
 import model.Doctor;
 
-public class CommandLoadPatientDoctor implements Command {
+public class ActionLoadPatientDoctor implements Action {
     private final DoctorRepository doctorRepository;
     private final String dni;
 
 
-    public CommandLoadPatientDoctor(DoctorRepository doctorRepository, String dni) {
+    public ActionLoadPatientDoctor(DoctorRepository doctorRepository, String dni) {
         this.doctorRepository = doctorRepository;
         this.dni = dni;
     }

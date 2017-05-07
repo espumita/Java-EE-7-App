@@ -17,7 +17,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommandAddPatientShould {
+public class ActionAddPatientShould {
 
     private DoctorRepository doctorRepository;
 
@@ -37,9 +37,9 @@ public class CommandAddPatientShould {
                 .withSamplesHistory(Lists.newArrayList(
                         new Sample("someGlucoseLevel", new Date().toString())))
                 .build();
-        CommandAddPatient commandAddPatient = new CommandAddPatient(patient, doctorRepository ,"someId");
+        ActionAddPatient actionAddPatient = new ActionAddPatient(patient, doctorRepository ,"someId");
 
-        commandAddPatient.run();
+        actionAddPatient.run();
 
         verify(doctorRepository).addPatient(eq(patient), eq("someId"));
     }

@@ -1,7 +1,7 @@
 package controllers;
 
-import actions.CommandLoadPatient;
-import actions.CommandLoadPatientDoctor;
+import actions.ActionLoadPatient;
+import actions.ActionLoadPatientDoctor;
 import beans.LogBeanInterface;
 import beans.PatientBeanInterface;
 import infrastructure.repositories.postgres.DoctorPostgresRepository;
@@ -37,7 +37,7 @@ public class PatientProfileServlet extends HttpServlet {
         if(session.isUserLogged() && session.isUserAPatient()){
             String dni = request.getSession().getAttribute("dni").toString();
             PatientPostgresRepository patientRepository = new PatientPostgresRepository();
-            CommandLoadPatient patientCommand = new CommandLoadPatient(dni, patientRepository);
+            ActionLoadPatient patientCommand = new ActionLoadPatient(dni, patientRepository);
             try {
                 Patient patient = patientCommand.run();
                 patientBean.wrapper(patient.toWrapper());
@@ -45,7 +45,7 @@ public class PatientProfileServlet extends HttpServlet {
             request.setAttribute("user", patientBean.wrapper());
 
             DoctorPostgresRepository doctorRepository = new DoctorPostgresRepository();
-            CommandLoadPatientDoctor doctorCommand = new CommandLoadPatientDoctor(doctorRepository, dni);
+            ActionLoadPatientDoctor doctorCommand = new ActionLoadPatientDoctor(doctorRepository, dni);
             Doctor doctor = doctorCommand.run();
             request.setAttribute("doctor", doctor);
 

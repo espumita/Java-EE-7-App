@@ -1,6 +1,6 @@
 package controllers;
 
-import actions.CommandAddSample;
+import actions.ActionAddSample;
 import beans.LogBeanInterface;
 import infrastructure.repositories.postgres.PatientPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
@@ -29,7 +29,7 @@ public class SaveSampleServlet extends HttpServlet {
             String sampleValue = ((String) request.getParameter("sampleValue"));
             String dni = request.getSession().getAttribute("dni").toString();
             PatientPostgresRepository patientRepository = new PatientPostgresRepository();            Sample sample = new Sample(sampleValue, new Date().toString());
-            CommandAddSample command = new CommandAddSample(sample, patientRepository, dni);
+            ActionAddSample command = new ActionAddSample(sample, patientRepository, dni);
             try {
                 command.run();
             } catch (Exception e) { }

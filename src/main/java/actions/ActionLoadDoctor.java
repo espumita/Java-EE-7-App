@@ -4,11 +4,11 @@ import infrastructure.repositories.DoctorRepository;
 import model.Doctor;
 import model.exceptions.IncompletePatient;
 
-public class CommandLoadDoctor implements Command {
+public class ActionLoadDoctor implements Action {
     private final DoctorRepository doctorRepository;
     private final String doctorDni;
 
-    public CommandLoadDoctor(DoctorRepository doctorRepository, String doctorDni) {
+    public ActionLoadDoctor(DoctorRepository doctorRepository, String doctorDni) {
         this.doctorRepository = doctorRepository;
         this.doctorDni = doctorDni;
     }

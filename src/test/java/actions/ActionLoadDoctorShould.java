@@ -11,7 +11,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommandLoadPatientDoctorShould {
+public class ActionLoadDoctorShould {
 
     private DoctorRepository doctorRepository;
 
@@ -22,11 +22,11 @@ public class CommandLoadPatientDoctorShould {
 
     @Test
     public void load_the_patients_doctor() throws Exception {
-        String dni = "someDni";
-        CommandLoadPatientDoctor commandLoadPatientDoctor = new CommandLoadPatientDoctor(doctorRepository, dni);
+        String doctorDni = "someDni";
+        ActionLoadDoctor actionLoadDoctor = new ActionLoadDoctor(doctorRepository, doctorDni);
 
-        commandLoadPatientDoctor.run();
+        actionLoadDoctor.run();
 
-        verify(doctorRepository).simpleLoad(eq(dni));
+        verify(doctorRepository).fullLoad(eq(doctorDni));
     }
 }

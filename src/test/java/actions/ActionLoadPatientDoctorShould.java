@@ -1,6 +1,5 @@
 package actions;
 
-
 import infrastructure.repositories.DoctorRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +11,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommandRemovePatientShould {
+public class ActionLoadPatientDoctorShould {
 
     private DoctorRepository doctorRepository;
 
@@ -22,11 +21,12 @@ public class CommandRemovePatientShould {
     }
 
     @Test
-    public void remove_a_patient_from_a_doctor_patients_list() throws Exception {
-        CommandRemovePatient commandRemovePatient = new CommandRemovePatient("someDNI", doctorRepository ,"someId");
+    public void load_the_patients_doctor() throws Exception {
+        String dni = "someDni";
+        ActionLoadPatientDoctor actionLoadPatientDoctor = new ActionLoadPatientDoctor(doctorRepository, dni);
 
-        commandRemovePatient.run();
+        actionLoadPatientDoctor.run();
 
-        verify(doctorRepository).removePatient(eq("someDNI"), eq("someId"));
+        verify(doctorRepository).simpleLoad(eq(dni));
     }
 }

@@ -2,12 +2,12 @@ package actions;
 
 import infrastructure.repositories.DoctorRepository;
 
-public class CommandRemovePatient implements Command{
+public class ActionRemovePatient implements Action {
     private final String dni;
     private final DoctorRepository doctorRepository;
     private final String id;
 
-    public CommandRemovePatient(String dni, DoctorRepository doctorRepository, String id) {
+    public ActionRemovePatient(String dni, DoctorRepository doctorRepository, String id) {
 
         this.dni = dni;
         this.doctorRepository = doctorRepository;

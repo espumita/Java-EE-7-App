@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommandAddSampleShould {
+public class ActionAddSampleShould {
 
     private PatientRepository patientRepository;
 
@@ -26,9 +26,9 @@ public class CommandAddSampleShould {
     @Test
     public void persist_the_sample() throws Exception {
         Sample sample = new Sample("someLevel", new Date().toString());
-        CommandAddSample commandAddSample = new CommandAddSample(sample, patientRepository ,"someDNI");
+        ActionAddSample actionAddSample = new ActionAddSample(sample, patientRepository ,"someDNI");
 
-        commandAddSample.run();
+        actionAddSample.run();
 
         verify(patientRepository).addSample(eq(sample), eq("someDNI"));
     }
