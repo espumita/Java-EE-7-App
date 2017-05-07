@@ -11,11 +11,13 @@ public class PatientBean implements PatientBeanInterface {
     public PatientBean() {
     }
 
-    public PatientWrapper wrapper() {
-        return wrapper;
-    }
-
+    @Override
     public void wrapper(PatientWrapper wrapper) {
         this.wrapper = wrapper;
+    }
+
+    @Override
+    public PatientWrapper wrapper() {
+        return wrapper;
     }
 }

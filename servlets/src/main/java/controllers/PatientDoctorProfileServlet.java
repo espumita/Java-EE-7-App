@@ -1,6 +1,8 @@
 package controllers;
 
 import actions.CommandLoadPatientDoctor;
+import beans.DoctorProfileBean;
+import beans.DoctorProfileInterface;
 import beans.LogBeanInterface;
 import infrastructure.repositories.postgres.DoctorPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
@@ -22,6 +24,9 @@ public class PatientDoctorProfileServlet extends HttpServlet {
     @EJB
     LogBeanInterface logBean;
 
+    @EJB
+    DoctorProfileInterface doctorProfile;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && session.isUserAPatient()){
@@ -30,7 +35,9 @@ public class PatientDoctorProfileServlet extends HttpServlet {
             CommandLoadPatientDoctor command = new CommandLoadPatientDoctor(doctorRepository, patientDni);
             Doctor doctor = command.run();
 
-            request.setAttribute("doctor", doctor);
+            doctorProfile.wrapper(doctor.toProfileWrapper());
+
+            request.setAttribute("doctor", doctorProfile.wrapper());
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientDoctorProfile.jsp");
             requestDispatcher.forward(request, response);
