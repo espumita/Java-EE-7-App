@@ -7,7 +7,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="./checkLogin" method="post">
+                <form action="./handler?command=CheckLogin" method="post">
                     <h1><i class="fa fa-heart"></i> Glucose App!</h1>
                     <div class="clearfix"></div>
 
@@ -37,4 +37,5 @@
 </div>
 
 
-</body></html>
+</body>
+</html>

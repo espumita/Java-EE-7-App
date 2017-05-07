@@ -28,7 +28,7 @@ public class CommandCheckLogin implements  Command {
     public void run() throws IOException, ServletException {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if (session.isUserLogged()){
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=Login"));
             return;
         }
 
@@ -36,14 +36,14 @@ public class CommandCheckLogin implements  Command {
             String dni = request.getParameter("dni");
             session.login(new UserCredentials(dni));
         } catch (Exception e) {
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=Error"));
             return;
         }
 
         if (session.isUserAPatient()){
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=PatientProfile"));
         }else{
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/list"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=Login"));
         }
     }
 }

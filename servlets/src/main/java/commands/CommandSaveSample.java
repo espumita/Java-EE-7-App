@@ -33,14 +33,15 @@ public class CommandSaveSample implements Command {
         if(session.isUserLogged() && session.isUserAPatient()){
             String sampleValue = ((String) request.getParameter("sampleValue"));
             String dni = request.getSession().getAttribute("dni").toString();
-            PatientPostgresRepository patientRepository = new PatientPostgresRepository();            Sample sample = new Sample(sampleValue, new Date().toString());
+            PatientPostgresRepository patientRepository = new PatientPostgresRepository();
+            Sample sample = new Sample(sampleValue, new Date().toString());
             ActionAddSample command = new ActionAddSample(sample, patientRepository, dni);
             try {
                 command.run();
             } catch (Exception e) { }
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=PatientProfile"));
         }else {
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=Login"));
         }
     }
 }

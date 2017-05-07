@@ -27,6 +27,6 @@ public class CommandLogout implements Command{
     public void run() throws IOException, ServletException {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged()) session.logout();
-        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=Login"));
     }
 }

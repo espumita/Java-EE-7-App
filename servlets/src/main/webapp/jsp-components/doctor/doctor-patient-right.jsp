@@ -23,7 +23,7 @@
                         <li>Age: ${patient.age()}</li>
                         <li><i class="fa fa-map-marker user-profile-icon"></i> ${patient.address()}</li>
                         <li>DNI: ${patient.dni()}</li>
-                        <li>Assigned Doctor: <a href="./doctorProfile">${doctor.name()}</a></li>
+                        <li>Assigned Doctor: <a href="./handler?command=DoctorPatientList">${doctor.name()}</a></li>
                     </ul>
 
                 </div>

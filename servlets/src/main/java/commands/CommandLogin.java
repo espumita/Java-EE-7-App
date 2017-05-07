@@ -29,9 +29,9 @@ public class CommandLogin implements  Command{
         Session session = new Session(request.getSession(), logBean, userRepository);
         if(session.isUserLogged()){
             if (session.isUserAPatient()){
-                response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/patient"));
+                response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=PatientProfile"));
             }else{
-                response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/list"));
+                response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=DoctorPatientList"));
             }
         }else{
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login.jsp");

@@ -44,7 +44,7 @@ public class CommandDoctorPatientList implements Command{
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("DoctorPatientList.jsp");
             requestDispatcher.forward(request, response);
         }else {
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=Login"));
         }
     }
 }

@@ -56,7 +56,7 @@ public class CommandPatientProfile implements Command{
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientProfile.jsp");
             requestDispatcher.forward(request, response);
         }else {
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/handler?command=Login"));
         }
     }
 }

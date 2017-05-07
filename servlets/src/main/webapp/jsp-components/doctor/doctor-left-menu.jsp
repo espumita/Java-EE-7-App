@@ -27,9 +27,9 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="./list">Patients</a></li>
-                            <li><a href="./list">Add Patient</a></li>
-                            <li><a href="">Profile</a></li>
+                            <li><a href="./handler?command=DoctorPatientList">Patients</a></li>
+                            <li><a href="./handler?command=DoctorPatientList">Add Patient</a></li>
+                            <li><a href="./handler?command=DoctorPatientList">Profile</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Questions <span class="fa fa-chevron-down"></span></a>

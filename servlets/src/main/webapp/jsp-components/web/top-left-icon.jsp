@@ -1,1 +1,1 @@
-<a href="./login" class="site_title"><i class="fa fa-heart"></i> <span>Glucose App!</span></a>
+<a href="./handler?command=Login" class="site_title"><i class="fa fa-heart"></i> <span>Glucose App!</span></a>
