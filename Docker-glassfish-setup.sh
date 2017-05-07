@@ -6,4 +6,4 @@ docker stop glassfish-cont
 docker rm glassfish-cont
 docker rmi glassfish-img
 docker build -t glassfish-img $DOCKERFILE_DIRECTORY
-docker run --name glassfish-cont -p 8080:8008 -d glassfish-img
+docker run --name glassfish-cont -p 8080:8080 -d glassfish-img
