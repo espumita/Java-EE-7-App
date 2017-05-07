@@ -1,7 +1,12 @@
 package controllers;
 
+import beans.DoctorProfileInterface;
+import beans.PatientBeanInterface;
 import commands.Command;
+import commands.CommandPatientDoctorProfile;
+import commands.CommandPatientProfile;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,12 +18,19 @@ import java.lang.reflect.InvocationTargetException;
 
 @WebServlet(name = "FrontHandlerServlet", urlPatterns="/handler")
 public class FrontHandlerServlet extends HttpServlet {
+    @EJB
+    PatientBeanInterface patientBean;
+
+    @EJB
+    DoctorProfileInterface doctorProfile;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Class commandClass = commandClass(request);
+        if (checkSessionBeansInjectionExceptions(request, response, commandClass)) return;
         Constructor commandConstructor = commandConstructor(commandClass);
         Command command = command(request, response, commandConstructor);
         command.run();
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,5 +69,23 @@ public class FrontHandlerServlet extends HttpServlet {
             return  null;
         }
         return command;
+    }
+
+    private boolean checkSessionBeansInjectionExceptions(HttpServletRequest request, HttpServletResponse response, Class commandClass) {
+        if(commandClass.isAssignableFrom(CommandPatientProfile.class)) {
+            try {
+                Command assignate = new CommandPatientProfile(request, response, patientBean);
+                assignate.run();
+            } catch (Exception e) { }
+            return true;
+        }
+        if(commandClass.isAssignableFrom(CommandPatientDoctorProfile.class)) {
+            try {
+                Command assignate = new CommandPatientDoctorProfile(request, response, doctorProfile);
+                assignate.run();
+            } catch (Exception e) { }
+            return true;
+        }
+        return false;
     }
 }

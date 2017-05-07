@@ -24,16 +24,17 @@ public class CommandPatientProfile implements Command{
     @EJB
     LogBeanInterface logBean;
 
-    @EJB
-    PatientBeanInterface patientBean;
 
     private final HttpServletRequest request;
     private final HttpServletResponse response;
+    private PatientBeanInterface patientBean;
 
-    public CommandPatientProfile(HttpServletRequest request, HttpServletResponse response) {
+    public CommandPatientProfile(HttpServletRequest request, HttpServletResponse response, PatientBeanInterface patientBean) {
         this.request = request;
         this.response = response;
+        this.patientBean = patientBean;
     }
+
     @Override
     public void run() throws IOException, ServletException {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());

@@ -19,15 +19,15 @@ public class CommandPatientDoctorProfile implements Command {
     @EJB
     LogBeanInterface logBean;
 
-    @EJB
-    DoctorProfileInterface doctorProfile;
+    private DoctorProfileInterface doctorProfile;
 
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
-    public CommandPatientDoctorProfile(HttpServletRequest request, HttpServletResponse response) {
+    public CommandPatientDoctorProfile(HttpServletRequest request, HttpServletResponse response, DoctorProfileInterface doctorProfile) {
         this.request = request;
         this.response = response;
+        this.doctorProfile = doctorProfile;
     }
 
     @Override
