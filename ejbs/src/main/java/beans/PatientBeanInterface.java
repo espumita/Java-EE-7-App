@@ -1,10 +1,10 @@
 package beans;
 
-import proxy.PatientProxy;
+import wrapper.PatientWrapper;
 import javax.ejb.Local;
 
 @Local
 public interface PatientBeanInterface{
-    PatientProxy patient();
-    void patient(PatientProxy patient);
+    PatientWrapper wrapper();
+    void wrapper(PatientWrapper wrapper);
 }

@@ -1,12 +1,12 @@
-package proxy;
+package wrapper;
 
 import java.util.Date;
 
-public class SampleProxy {
+public class SampleWrapper {
     private final String glucoseLevel;
     private final Date date;
 
-    public SampleProxy(String glucoseLevel, Date date) {
+    public SampleWrapper(String glucoseLevel, Date date) {
         this.glucoseLevel = glucoseLevel;
         this.date = date;
     }

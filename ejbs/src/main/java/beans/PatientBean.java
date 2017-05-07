@@ -1,21 +1,21 @@
 package beans;
 
-import proxy.PatientProxy;
+import wrapper.PatientWrapper;
 
 import javax.ejb.Stateful;
 
 @Stateful(name = "PatientEJB")
 public class PatientBean implements PatientBeanInterface {
-    private PatientProxy patient;
+    private PatientWrapper wrapper;
 
     public PatientBean() {
     }
 
-    public PatientProxy patient() {
-        return patient;
+    public PatientWrapper wrapper() {
+        return wrapper;
     }
 
-    public void patient(PatientProxy patient) {
-        this.patient = patient;
+    public void wrapper(PatientWrapper wrapper) {
+        this.wrapper = wrapper;
     }
 }

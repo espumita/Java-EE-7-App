@@ -40,9 +40,9 @@ public class PatientProfileServlet extends HttpServlet {
             CommandLoadPatient patientCommand = new CommandLoadPatient(dni, patientRepository);
             try {
                 Patient patient = patientCommand.run();
-                patientBean.patient(patient.toProxy());
+                patientBean.wrapper(patient.toWrapper());
             } catch (IncompletePatient incompletePatient) { }
-            request.setAttribute("user", patientBean.patient());
+            request.setAttribute("user", patientBean.wrapper());
 
             DoctorPostgresRepository doctorRepository = new DoctorPostgresRepository();
             CommandLoadPatientDoctor doctorCommand = new CommandLoadPatientDoctor(doctorRepository, dni);

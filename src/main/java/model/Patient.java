@@ -1,6 +1,6 @@
 package model;
 
-import proxy.PatientProxy;
+import wrapper.PatientWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +51,8 @@ public class Patient implements User {
         return (ArrayList<Sample>) samplesHistory;
     }
 
-    public PatientProxy toProxy() {
-        return new PatientProxy(name, gender, address, age, dni, sampleHistory());
+    public PatientWrapper toWrapper() {
+        return new PatientWrapper(name, gender, address, age, dni, sampleHistory());
     }
 
 }

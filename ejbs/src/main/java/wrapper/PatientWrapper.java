@@ -1,17 +1,17 @@
-package proxy;
+package wrapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientProxy {
+public class PatientWrapper {
     private String name;
     private String gender;
     private String address;
     private String age;
     private String dni;
-    private List<SampleProxy> samplesHistory = new ArrayList<>();
+    private List<SampleWrapper> samplesHistory = new ArrayList<>();
 
-    public PatientProxy(String name, String gender, String address, String age, String dni, ArrayList samplesHistory) {
+    public PatientWrapper(String name, String gender, String address, String age, String dni, ArrayList samplesHistory) {
         this.name = name;
         this.gender = gender;
         this.address = address;
@@ -40,11 +40,11 @@ public class PatientProxy {
         return age;
     }
 
-    public void add(SampleProxy sample) {
+    public void add(SampleWrapper sample) {
         samplesHistory.add(sample);
     }
 
-    public ArrayList<SampleProxy> sampleHistory() {
-        return (ArrayList<SampleProxy>) samplesHistory;
+    public ArrayList<SampleWrapper> sampleHistory() {
+        return (ArrayList<SampleWrapper>) samplesHistory;
     }
 }
