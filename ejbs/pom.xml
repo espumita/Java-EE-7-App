@@ -11,24 +11,7 @@
       <version>1.0</version>
    </parent>
    <dependencies>
-      <dependency>
-         <groupId>root.project</groupId>
-         <artifactId>primary-source</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>root.project.projects</groupId>
-         <artifactId>logging</artifactId>
-      </dependency>
-       <dependency>
-           <groupId>root</groupId>
-           <artifactId>project</artifactId>
-           <version>1.0</version>
-       </dependency>
-       <dependency>
-           <groupId>root</groupId>
-           <artifactId>project</artifactId>
-           <version>1.0</version>
-       </dependency>
+
    </dependencies>
    <build>
       <plugins>
