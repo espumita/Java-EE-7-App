@@ -81,7 +81,7 @@
    <packaging>pom</packaging>
    <name>project</name>
    <modules>
-      <module>servlet</module>
+      <module>servlets</module>
       <module>ejbs</module>
    </modules>
    <build>
