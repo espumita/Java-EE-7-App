@@ -1,9 +1,8 @@
-package controllers;
+package commands;
 
 import actions.ActionLoadPatient;
 import actions.ActionLoadPatientDoctor;
 import beans.LogBeanInterface;
-import beans.PatientBeanInterface;
 import infrastructure.repositories.postgres.DoctorPostgresRepository;
 import infrastructure.repositories.postgres.PatientPostgresRepository;
 import infrastructure.repositories.postgres.UserPostgresRepository;
@@ -15,49 +14,44 @@ import utils.Session;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet(name = "PatientProfileServlet", urlPatterns = "/patient")
-public class PatientProfileServlet extends HttpServlet {
+public class CommandMyPatient implements Command{
 
     @EJB
     LogBeanInterface logBean;
 
+    private final HttpServletRequest request;
+    private final HttpServletResponse response;
 
-    @EJB
-    PatientBeanInterface patientBean;
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public CommandMyPatient(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+    }
+    @Override
+    public void run() throws IOException, ServletException {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
-        if(session.isUserLogged() && session.isUserAPatient()){
-            String dni = request.getSession().getAttribute("dni").toString();
+        if(session.isUserLogged() && !session.isUserAPatient()){
+            String patientDni = request.getParameter("dni");
             PatientPostgresRepository patientRepository = new PatientPostgresRepository();
-            ActionLoadPatient patientCommand = new ActionLoadPatient(dni, patientRepository);
+            ActionLoadPatient patientCommand = new ActionLoadPatient(patientDni, patientRepository);
+            Patient patient = null;
             try {
-                Patient patient = patientCommand.run();
-                patientBean.wrapper(patient.toWrapper());
+                patient = patientCommand.run();
             } catch (IncompletePatient incompletePatient) { }
-            request.setAttribute("user", patientBean.wrapper());
+            request.setAttribute("patient", patient);
 
             DoctorPostgresRepository doctorRepository = new DoctorPostgresRepository();
-            ActionLoadPatientDoctor doctorCommand = new ActionLoadPatientDoctor(doctorRepository, dni);
-            Doctor doctor = doctorCommand.run();
+            ActionLoadPatientDoctor actionLoadPatientDoctor = new ActionLoadPatientDoctor(doctorRepository, patientDni);
+            Doctor doctor = actionLoadPatientDoctor.run();
             request.setAttribute("doctor", doctor);
 
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("PatientProfile.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("MyPatient.jsp");
             requestDispatcher.forward(request, response);
         }else {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

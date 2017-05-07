@@ -1,4 +1,4 @@
-package controllers;
+package commands;
 
 import actions.ActionAddSample;
 import beans.LogBeanInterface;
@@ -9,21 +9,26 @@ import utils.Session;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-
-@WebServlet(name = "SaveSampleServlet", urlPatterns = "/saveSample")
-public class SaveSampleServlet extends HttpServlet {
+public class CommandSaveSample implements Command {
 
     @EJB
     LogBeanInterface logBean;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private final HttpServletRequest request;
+    private final HttpServletResponse response;
+
+    public CommandSaveSample(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+    }
+
+    @Override
+    public void run() throws IOException, ServletException {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && session.isUserAPatient()){
             String sampleValue = ((String) request.getParameter("sampleValue"));
@@ -37,9 +42,5 @@ public class SaveSampleServlet extends HttpServlet {
         }else {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

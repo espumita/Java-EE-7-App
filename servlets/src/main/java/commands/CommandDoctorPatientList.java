@@ -1,4 +1,4 @@
-package controllers;
+package commands;
 
 import actions.ActionLoadDoctor;
 import beans.LogBeanInterface;
@@ -11,19 +11,26 @@ import utils.Session;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DoctorPatientListServlet", urlPatterns = "/list")
-public class DoctorPatientListServlet extends HttpServlet {
+public class CommandDoctorPatientList implements Command{
 
     @EJB
     LogBeanInterface logBean;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private final HttpServletRequest request;
+    private final HttpServletResponse response;
+
+    public CommandDoctorPatientList(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+    }
+
+
+    @Override
+    public void run() throws IOException, ServletException {
         Session session = new Session(request.getSession(), logBean, new UserPostgresRepository());
         if(session.isUserLogged() && !session.isUserAPatient()){
             String dni = request.getSession().getAttribute("dni").toString();
@@ -39,9 +46,5 @@ public class DoctorPatientListServlet extends HttpServlet {
         }else {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/login"));
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

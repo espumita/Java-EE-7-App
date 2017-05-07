@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 
 @WebServlet(name = "FrontHandlerServlet", urlPatterns="/handler")
 public class FrontHandlerServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Class commandClass = commandClass(request);
         Constructor commandConstructor = commandConstructor(commandClass);
@@ -21,7 +22,10 @@ public class FrontHandlerServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Class commandClass = commandClass(request);
+        Constructor commandConstructor = commandConstructor(commandClass);
+        Command command = command(request, response, commandConstructor);
+        command.run();
     }
 
     private Class commandClass(HttpServletRequest request) {
