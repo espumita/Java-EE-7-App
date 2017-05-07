@@ -8,7 +8,7 @@
         <class>infrastructure.postgresEntyties.RelationsEntity</class>
         <class>infrastructure.postgresEntyties.SamplesEntity</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://172.17.0.3:5432/GlucoseAppDB"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://172.17.0.2:5432/GlucoseAppDB"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.username" value="postgres"/>
             <property name="hibernate.connection.password" value="mysecretpassword"/>
